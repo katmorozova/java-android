@@ -29,5 +29,18 @@ public class MainBox {
         box1.showVolume();
         box2.showVolume();
 
+        Box current = new Box(10, 10, 10);
+        //Box another = new Box(20, 20, 20);
+        Box another = current.copy();
+        Box another2 = current.increase();
+        current.compare(another);
+        int count = current.compare(another);
+        System.out.println(count);
+
+        current.showVolume();
+        another.showVolume();
+        another2.showVolume();
+
+
     }
 }

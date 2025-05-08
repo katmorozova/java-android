@@ -13,6 +13,26 @@ public class Box {
         this(10);
     }
 
+    Box(Box another){
+        this(another.length, another.width, another.height);
+    }
+
+    Box copy(){
+        return new Box(
+                this.length = length,
+                this.width = width,
+                this.height = height
+        );
+    }
+
+    Box increase(){
+        return new Box(
+                this.length = length * 2,
+                this.width = width * 2,
+                this.height = height * 2
+        );
+    }
+
     Box(double length, double width, double height){
         this.length = length;
         this.width = width;
@@ -22,7 +42,34 @@ public class Box {
     Box(double size){
         this(size, size, size);
     }
+/*
+    void compare(Box another){
+        double currentVolume = getVolume();
+        double anotherVolume = another.getVolume();
+        if(currentVolume > anotherVolume){
+            System.out.println("Current > Another");
+        } else if (currentVolume < anotherVolume) {
+            System.out.println("Current < Another");
+        } else {
+            System.out.println("Current == Another");
+        }
+    }
 
+ */
+
+    int compare(Box another){
+        double currentVolume = getVolume();
+        double anotherVolume = another.getVolume();
+        int count;
+        if(currentVolume > anotherVolume){
+            count = 1;
+        } else if (currentVolume < anotherVolume) {
+            count = - 1;
+        } else {
+            count = 0;
+        }
+        return count;
+    }
 
     void setDimens(double length, double width, double height ){
         this.length = length;

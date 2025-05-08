@@ -22,4 +22,18 @@ public class Monster {
         System.out.println(info);
     }
 
+    void voice(){
+        System.out.println("Grrrrrrrrr...");
+    }
+
+    void voice(int count){
+            voice(count, "Grrrrrrrr...");
+    }
+
+    void voice(int count, String word){
+        for(int i = 0; i < count; i++){
+            System.out.println(word);
+        }
+    }
+
 }

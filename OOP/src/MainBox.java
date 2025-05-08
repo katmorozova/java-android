@@ -1,20 +1,23 @@
 public class MainBox {
 
     public static void main(String[] args) {
-        Box box1 = new Box();
+        Box box1 = new Box(10,10,10);
        /*
         box1.height = 10;
         box1.width = 10;
         box1.length = 10;
         */
-        box1.setDimens(10, 10, 10);
+        //box1.setDimens(10, 10, 10);
 
-        Box box2 = new Box();
+        Box box2 = new Box(20,20,20);
+        /*
         box2.height = 20;
         box2.width = 20;
         box2.length = 20;
 
         Box box3 = box2;
+
+         */
 
         //double volume1 = box1.height * box1.length * box1.width;
         //double volume1 = box1.getVolume();

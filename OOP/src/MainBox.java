@@ -2,9 +2,12 @@ public class MainBox {
 
     public static void main(String[] args) {
         Box box1 = new Box();
+       /*
         box1.height = 10;
         box1.width = 10;
         box1.length = 10;
+        */
+        box1.setDimens(10, 10, 10);
 
         Box box2 = new Box();
         box2.height = 20;

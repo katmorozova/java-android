@@ -1,3 +1,5 @@
+package homeworks;
+
 public class MainMonster {
 
     public static void main(String[] args) {

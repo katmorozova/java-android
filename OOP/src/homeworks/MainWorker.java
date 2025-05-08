@@ -1,3 +1,5 @@
+package homeworks;
+
 public class MainWorker {
 
     public static void main(String[] args) {

@@ -1,3 +1,5 @@
+package homeworks;
+
 public class Worker {
 
     String name;

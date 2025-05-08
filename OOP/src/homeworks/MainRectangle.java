@@ -1,3 +1,5 @@
+package homeworks;
+
 public class MainRectangle {
 
     public static void main(String[] args) {

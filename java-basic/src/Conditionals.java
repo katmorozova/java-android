@@ -10,6 +10,7 @@ public class Conditionals {
             System.out.println("Aire no hace nada");
         }
 
+        //HOMEWORK
         int money = 6;
         if (money >= 10) {
             System.out.println("Hoy comes pizza!");
@@ -18,5 +19,6 @@ public class Conditionals {
         } else {
             System.out.println("Hoy comes sandwich!");
         }
+        //End
     }
 }

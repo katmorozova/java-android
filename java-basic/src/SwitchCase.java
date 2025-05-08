@@ -42,7 +42,7 @@ public class SwitchCase {
                 break;
         }
 
-
+//HOMEWORK
         String nameOfMonth = "december";
         switch (nameOfMonth) {
             case "december":
@@ -68,7 +68,7 @@ public class SwitchCase {
             default:
                 System.out.println("Dato desconosido");
         }
-
+//End
 
     }
 }

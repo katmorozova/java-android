@@ -10,7 +10,11 @@ public class Box {
         return  volume;
          */
         return length * width * height;
+    }
 
+    void showVolume(){
+        double volume = length * width * height;
+        System.out.println(volume);
     }
 
 }

@@ -14,12 +14,14 @@ public class MainBox {
         Box box3 = box2;
 
         //double volume1 = box1.height * box1.length * box1.width;
-        double volume1 = box1.getVolume();
+        //double volume1 = box1.getVolume();
         //double volume2 = box2.height * box2.length * box2.width;
-        double volume2 = box2.getVolume();
-        System.out.println(volume1);
-        System.out.println(volume2);
+        //double volume2 = box2.getVolume();
+        //System.out.println(volume1);
+        //System.out.println(volume2);
 
+        box1.showVolume();
+        box2.showVolume();
 
     }
 }

@@ -20,6 +20,11 @@ public class CatFamily {
         this.canEatPerson = canEatPerson;
     }
 
+    public void eat(){
+        System.out.println("Estoy comiendo");
+    }
+
+
     public int getLegs() {
         return legs;
     }

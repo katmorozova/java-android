@@ -1,8 +1,12 @@
+import javax.xml.namespace.QName;
+import java.util.ArrayList;
+
 public class Collections {
 
     public static void main(String[] args) {
         //String[] employees = getEmployees();
-        MyArrayList employees = getEmployees();
+        //MyArrayList employees = getEmployees();
+        ArrayList<String> employees = getEmployees();
         /*
         String[] newArray = new String[employees.length + 1];
 
@@ -30,16 +34,37 @@ public class Collections {
 
         employees.add("James");
         employees.remove("Emma");
-        for(int i = 0; i < employees.getSize(); i ++){
+        //for(int i = 0; i < employees.getSize(); i ++){
+        /*for(int i = 0; i < employees.size(); i ++){
             System.out.println(employees.get(i));
+        }
+         */
+        for(String employee : employees){
+            System.out.println(employee);
+        }
+
+        ArrayList<Integer> numbers = new ArrayList<>();
+        for(int i = 0; i < 5; i++){
+            numbers.add(i);
+        }
+
+
+        ArrayList<String> text = new ArrayList<>();
+        for(int i = 0; i < employees.size(); i++){
+            text.add(numbers.get(i) + " - " + employees.get(i));
+        }
+        for (String frase : text){
+            System.out.println(frase);
         }
     }
 
 
     //private static String[] getEmployees(){
-    private static MyArrayList getEmployees(){
+    //private static MyArrayList getEmployees(){
+    private static ArrayList<String> getEmployees(){
         //String[] employees = new String[5];
-        MyArrayList employees = new MyArrayList();
+        //MyArrayList employees = new MyArrayList();
+        ArrayList<String> employees = new ArrayList<>();
         /*
         employees[0] = "John";
         employees[1] = "Olivia";

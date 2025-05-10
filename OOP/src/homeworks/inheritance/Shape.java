@@ -1,6 +1,6 @@
 package homeworks.inheritance;
 
-public class Shape {
+public abstract class Shape {
 
     int a;
     int b;

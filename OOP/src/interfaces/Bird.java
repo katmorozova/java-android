@@ -1,6 +1,6 @@
 package interfaces;
 
-public class Bird extends Animal implements AbleToRun{
+public class Bird extends Animal implements AbleToRun, AbleToFly{
 
     @Override
     public void eat() {
@@ -10,5 +10,10 @@ public class Bird extends Animal implements AbleToRun{
     @Override
     public void run(){
         System.out.println("Pajaro esta corriendo");
+    }
+
+    @Override
+    public void fly(){
+        System.out.println("Pajaro esta volando");
     }
 }

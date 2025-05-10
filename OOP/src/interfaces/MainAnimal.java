@@ -18,6 +18,8 @@ public class MainAnimal {
         for (AbleToRun animal : animals){
             animal.run();
         }
+        AbleToFly ableToFly = new Bird();
+        ableToFly.fly();
 
 /*
         ArrayList<Animal> animals = new ArrayList<>();

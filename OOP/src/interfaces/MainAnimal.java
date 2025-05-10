@@ -21,6 +21,9 @@ public class MainAnimal {
         AbleToFly ableToFly = new Bird();
         ableToFly.fly();
 
+        //AbleToRun ableToRun = new Dog();
+        //Dog dog = (Dog) ableToRun;
+
 /*
         ArrayList<Animal> animals = new ArrayList<>();
         animals.add(cat);

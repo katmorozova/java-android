@@ -10,9 +10,14 @@ public class MainAnimal {
         Bird bird = new Bird();
         Fish fish = new Fish();
 
+        ArrayList<AbleToRun> animals = new ArrayList<>();
+        animals.add(cat);
+        animals.add(dog);
+        animals.add(bird);
 
-
-
+        for (AbleToRun animal : animals){
+            animal.run();
+        }
 
 /*
         ArrayList<Animal> animals = new ArrayList<>();

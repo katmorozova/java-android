@@ -1,3 +1,5 @@
+package inheritance;
+
 public class Box {
 
     double length;
@@ -43,7 +45,7 @@ public class Box {
         this(size, size, size);
     }
 /*
-    void compare(Box another){
+    void compare(inheritance.Box another){
         double currentVolume = getVolume();
         double anotherVolume = another.getVolume();
         if(currentVolume > anotherVolume){
@@ -92,6 +94,11 @@ public class Box {
         //double volume = getVolume();
         //System.out.println(volume);
         System.out.println(getVolume());
+    }
+
+    public void showInfo(){
+        String info = "Length: " + length + "\nWidth: " + width + "\nHeight: "+height;
+        System.out.println(info);
     }
 
 }

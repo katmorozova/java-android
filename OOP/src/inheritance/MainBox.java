@@ -1,3 +1,5 @@
+package inheritance;
+
 public class MainBox {
 
     public static void main(String[] args) {
@@ -15,7 +17,7 @@ public class MainBox {
         box2.width = 20;
         box2.length = 20;
 
-        Box box3 = box2;
+        inheritance.Box box3 = box2;
 
          */
 
@@ -30,7 +32,7 @@ public class MainBox {
         box2.showVolume();
 
         Box current = new Box(10, 10, 10);
-        //Box another = new Box(20, 20, 20);
+        //inheritance.Box another = new inheritance.Box(20, 20, 20);
         Box another = current.copy();
         Box another2 = current.increase();
         current.compare(another);
@@ -40,6 +42,11 @@ public class MainBox {
         current.showVolume();
         another.showVolume();
         another2.showVolume();
+
+        Box boxBox = new Box(10);
+        WeightBox weightBox = new WeightBox(10, 13);
+        boxBox.showInfo();
+        weightBox.showInfo();
 
 
     }

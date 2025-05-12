@@ -1,9 +1,8 @@
 package homeworks.interfaces;
 
-public class Director extends Worker{
+public class Director {
 
-    @Override
-    public void work() {
-        System.out.println("Director esta trabajando!");
+    public void force(Worker worker){
+        worker.work();
     }
 }

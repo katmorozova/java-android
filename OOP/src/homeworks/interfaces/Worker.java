@@ -1,8 +1,6 @@
 package homeworks.interfaces;
 
-public class Worker {
+public interface Worker {
 
-    public void work(){
-        System.out.println("Estoy trabajando");
-    }
+    void work();
 }

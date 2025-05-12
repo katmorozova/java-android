@@ -1,9 +1,5 @@
 package homeworks.interfaces;
 
-import interfaces.AbleToFly;
-import interfaces.AbleToRun;
-import interfaces.Bird;
-
 import java.util.ArrayList;
 
 public class MainWorker {
@@ -14,7 +10,6 @@ public class MainWorker {
         Chef chef = new Chef();
 
         ArrayList<Worker> workers = new ArrayList<>();
-        workers.add(director);
         workers.add(programmer);
         workers.add(chef);
         for (Worker worker : workers){
@@ -29,6 +24,14 @@ public class MainWorker {
             driver.drive();
         }
 
+
+        //director.force(programmer);
+        director.force(new Worker() {
+            @Override
+            public void work() {
+                System.out.println("Work");
+            }
+        });
 
     }
 }

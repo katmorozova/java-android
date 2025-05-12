@@ -1,6 +1,6 @@
 package homeworks.interfaces;
 
-public class Chef extends Worker implements Driver{
+public class Chef implements Worker, Driver{
 
     @Override
     public void work() {

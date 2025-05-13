@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Calculadora</string>
+    <string name="example">10 + 5 = ?</string>
+    <string name="hint_number">Introduce un numero</string>
+    <string name="button_answer">ANSWER</string>
+    <string name="incorrect_answer">Sorry, the answer is incorrect!</string>
+    <string name="correct_answer">You are right!</string>
 </resources>

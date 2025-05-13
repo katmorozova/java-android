@@ -2,4 +2,6 @@
     <string name="app_name">Messenger</string>
     <string name="hint_message">Escribe mensaje</string>
     <string name="button_message">SEND MESSAGE</string>
+    <string name="label_message">Your message:</string>
+    <string name="message">%s</string>
 </resources>

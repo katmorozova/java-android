@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Messenger</string>
+    <string name="hint_message">Escribe mensaje</string>
+    <string name="button_message">SEND MESSAGE</string>
 </resources>

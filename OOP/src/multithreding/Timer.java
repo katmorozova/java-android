@@ -1,3 +1,5 @@
+package multithreding;
+
 public class Timer implements Runnable{
 
     @Override

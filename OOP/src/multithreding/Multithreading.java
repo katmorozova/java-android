@@ -1,8 +1,10 @@
+package multithreding;
+
 public class Multithreading {
     static boolean isFive = false;
 
     public static void main(String[] args) {
-        //Timer timer = new Timer();
+        //multithreding.Timer timer = new multithreding.Timer();
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {

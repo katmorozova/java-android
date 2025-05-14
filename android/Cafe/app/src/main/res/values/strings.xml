@@ -5,4 +5,8 @@
     <string name="hint_password">Password:</string>
     <string name="button">ENTRAR</string>
     <string name="description">Imagen del logotipo de la app de pedidos</string>
+    <string name="greetings">¡Hola, %s! ¿Que te apetece tomar?</string>
+    <string name="radio_tea">Tea</string>
+    <string name="radio_coffee">Coffee</string>
+    <string name="additives">¿Que añadir en vuestro %s</string>
 </resources>

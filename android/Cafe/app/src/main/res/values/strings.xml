@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Cafe</string>
+    <string name="title_logo">Welcome!</string>
+    <string name="hint_name">Nombre:</string>
+    <string name="hint_password">Password:</string>
+    <string name="button">ENTRAR</string>
+    <string name="description">Imagen del logotipo de la app de pedidos</string>
 </resources>

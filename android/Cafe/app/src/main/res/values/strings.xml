@@ -26,4 +26,12 @@
         <item>Cortado descafenado</item>
     </array>
     <string name="button_makeOrder">HACER PEDIDO</string>
+    <string name="label_name">Nombre: </string>
+    <string name="name">%s</string>
+    <string name="label_drink">Bebida: </string>
+    <string name="drink">%s</string>
+    <string name="label_drinkType">Tipo de bebida: </string>
+    <string name="drinkType">%s</string>
+    <string name="additives_add">%s</string>
+    <string name="label_additives">Tipo de aditivos: </string>
 </resources>

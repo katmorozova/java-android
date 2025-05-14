@@ -34,4 +34,5 @@
     <string name="drinkType">%s</string>
     <string name="additives_add">%s</string>
     <string name="label_additives">Tipo de aditivos: </string>
+    <string name="error_fields_empty">Rellena los campos vacios</string>
 </resources>

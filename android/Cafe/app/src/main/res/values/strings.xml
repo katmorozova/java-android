@@ -9,4 +9,21 @@
     <string name="radio_tea">Tea</string>
     <string name="radio_coffee">Coffee</string>
     <string name="additives">¿Que añadir en vuestro %s</string>
+    <string name="checkboxSugar">Azucar</string>
+    <string name="checkboxMilk">Leche</string>
+    <string name="checkboxLemon">Limon</string>
+    <string name="choose_drink_type">Elige tipo de bebida:</string>
+
+
+    <array name="types_of_tea">
+        <item>Verde</item>
+        <item>Rojo</item>
+        <item>Negro</item>
+    </array>
+
+    <array name="types_of_coffee">
+        <item>Cortado</item>
+        <item>Cortado descafenado</item>
+    </array>
+    <string name="button_makeOrder">HACER PEDIDO</string>
 </resources>

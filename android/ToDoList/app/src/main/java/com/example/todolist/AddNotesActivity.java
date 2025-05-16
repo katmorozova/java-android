@@ -1,6 +1,9 @@
 package com.example.todolist;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -16,7 +19,6 @@ public class AddNotesActivity extends AppCompatActivity {
     private EditText editTextAddNote;
     private RadioButton radioButtonLow;
     private RadioButton radioButtonMedium;
-    private RadioButton radioButtonHigh;
     private Button buttonSave;
 
     @Override
@@ -30,13 +32,39 @@ public class AddNotesActivity extends AppCompatActivity {
             return insets;
         });
         initViews();
+        buttonSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveNote();
+            }
+        });
     }
 
     private void initViews(){
         editTextAddNote = findViewById(R.id.editTextAddNote);
         radioButtonLow = findViewById(R.id.radioButtonLow);
         radioButtonMedium = findViewById(R.id.radioButtonMedium);
-        radioButtonHigh = findViewById(R.id.radioButtonHigh);
         buttonSave = findViewById(R.id.buttonSaveNote);
+    }
+
+    private void saveNote(){
+        String text = editTextAddNote.getText().toString().trim();
+        int priority = getPriority();
+    }
+
+    private int getPriority(){
+        int priority;
+        if(radioButtonLow.isChecked()){
+            priority = 0;
+        }else if(radioButtonMedium.isChecked()){
+            priority = 1;
+        } else{
+            priority = 2;
+        }
+        return priority;
+    }
+
+    public static Intent newIntent(Context context){
+        return new Intent(context, AddNotesActivity.class);
     }
 }

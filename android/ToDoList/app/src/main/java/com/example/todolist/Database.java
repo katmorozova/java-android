@@ -1,7 +1,5 @@
 package com.example.todolist;
 
-import android.provider.ContactsContract;
-
 import java.util.ArrayList;
 import java.util.Random;
 

@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerViewNotes;
     private FloatingActionButton buttonAddNote;
+    private NotesAdapter notesAdapter;
 
     private Database database = Database.getInstance();
 
@@ -37,6 +39,10 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         initViews();
+        notesAdapter = new NotesAdapter();
+        recyclerViewNotes.setAdapter(notesAdapter);
+
+
         buttonAddNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,18 +64,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showNotes(){
-        linearLayoutNotes.removeAllViews();
-        for(Note note : database.getNotes()){
+        notesAdapter.setNotes(database.getNotes());
 
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    database.remove(note.getId());
-                    showNotes();
-                }
-            });
-
-            linearLayoutNotes.addView(view);
-        }
     }
+
 }

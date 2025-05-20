@@ -28,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton buttonAddNote;
     private NotesAdapter notesAdapter;
 
-    private Database database = Database.getInstance();
+    //private Database database = Database.getInstance();
+    private NoteDatabase noteDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        noteDatabase = noteDatabase.getInstance(getApplication());
         initViews();
         notesAdapter = new NotesAdapter();
        /*
@@ -67,7 +69,8 @@ public class MainActivity extends AppCompatActivity {
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 int position = viewHolder.getAdapterPosition();
                 Note note = notesAdapter.getNotes().get(position);
-                database.remove(note.getId());
+                //database.remove(note.getId());
+                noteDatabase.notesDao().remove(note.getId());
                 showNotes();
             }
         });
@@ -94,7 +97,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showNotes(){
-        notesAdapter.setNotes(database.getNotes());
+        //notesAdapter.setNotes(database.getNotes());
+        notesAdapter.setNotes(noteDatabase.notesDao().getNotes());
 
     }
 

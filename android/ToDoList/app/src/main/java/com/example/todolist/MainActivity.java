@@ -63,12 +63,22 @@ public class MainActivity extends AppCompatActivity {
         });
         */
         recyclerViewNotes.setAdapter(notesAdapter);
+
+        viewModel.getNotes().observe(this, new Observer<List<Note>>() {
+            @Override
+            public void onChanged(List<Note> notes) {
+                notesAdapter.setNotes(notes);
+            }
+        });
+/*
         noteDatabase.notesDao().getNotes().observe(this, new Observer<List<Note>>() {
             @Override
             public void onChanged(List<Note> notes) {
                 notesAdapter.setNotes(notes);
             }
         });
+
+ */
 
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(

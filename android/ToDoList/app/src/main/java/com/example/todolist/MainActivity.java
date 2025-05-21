@@ -16,6 +16,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,9 +34,10 @@ public class MainActivity extends AppCompatActivity {
     private NotesAdapter notesAdapter;
 
     //private Database database = Database.getInstance();
-    private NoteDatabase noteDatabase;
+    //private NoteDatabase noteDatabase;
 
     //private Handler handler = new Handler(Looper.getMainLooper());
+    private MainViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +49,9 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        noteDatabase = noteDatabase.getInstance(getApplication());
+        //noteDatabase = noteDatabase.getInstance(getApplication());
         initViews();
+        viewModel = new ViewModelProvider(this).get(MainViewModel.class);
         notesAdapter = new NotesAdapter();
        /*
         notesAdapter.setOnNoteClickListener(new NotesAdapter.OnNoteClickListener() {
@@ -83,27 +86,27 @@ public class MainActivity extends AppCompatActivity {
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 int position = viewHolder.getAdapterPosition();
                 Note note = notesAdapter.getNotes().get(position);
+                viewModel.remove(note);
                 //database.remove(note.getId());
-
+/*
                 Thread thread = new Thread(new Runnable() {
                     @Override
                     public void run() {
                         noteDatabase.notesDao().remove(note.getId());
-                        /*
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                showNotes();
-                            }
-                        });
 
-                         */
+                       // handler.post(new Runnable() {
+                        //    @Override
+                          //  public void run() {
+                          //      showNotes();
+                          //  }
+                        //});
                     }
                 });
                 thread.start();
-
+*/
             }
         });
+
         itemTouchHelper.attachToRecyclerView(recyclerViewNotes);
 
         buttonAddNote.setOnClickListener(new View.OnClickListener() {

@@ -19,7 +19,6 @@ import androidx.core.view.WindowInsetsCompat;
 public class AddNotesActivity extends AppCompatActivity {
 
 
-
     private EditText editTextAddNote;
     private RadioButton radioButtonLow;
     private RadioButton radioButtonMedium;

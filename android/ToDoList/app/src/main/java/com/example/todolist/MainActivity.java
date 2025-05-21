@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     //private Database database = Database.getInstance();
     private NoteDatabase noteDatabase;
 
-    private Handler handler = new Handler(Looper.getMainLooper());
+    //private Handler handler = new Handler(Looper.getMainLooper());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +60,14 @@ public class MainActivity extends AppCompatActivity {
         });
         */
         recyclerViewNotes.setAdapter(notesAdapter);
+        noteDatabase.notesDao().getNotes().observe(this, new Observer<List<Note>>() {
+            @Override
+            public void onChanged(List<Note> notes) {
+                notesAdapter.setNotes(notes);
+            }
+        });
+
+
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(
             0,ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT
         ) {
@@ -80,12 +89,15 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         noteDatabase.notesDao().remove(note.getId());
+                        /*
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
                                 showNotes();
                             }
                         });
+
+                         */
                     }
                 });
                 thread.start();
@@ -102,18 +114,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
+/*
     @Override
     protected void onResume() {
         super.onResume();
         showNotes();
     }
 
+ */
+
     private void initViews(){
         recyclerViewNotes = findViewById(R.id.recyclerViewNotes);
         buttonAddNote = findViewById(R.id.buttonAddNote);
     }
-
+/*
     private void showNotes(){
         //notesAdapter.setNotes(database.getNotes());
         Thread thread = new Thread(new Runnable() {
@@ -130,8 +144,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         thread.start();
-
-
     }
+ */
 
 }

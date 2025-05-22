@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 public class AddNotesActivity extends AppCompatActivity {
 
@@ -25,9 +27,10 @@ public class AddNotesActivity extends AppCompatActivity {
     private Button buttonSave;
 
     //private Database database = Database.getInstance();
-    private NoteDatabase noteDatabase;
+    //private NoteDatabase noteDatabase;
+    //private Handler handler = new Handler(Looper.getMainLooper());
 
-    private Handler handler = new Handler(Looper.getMainLooper());
+    private AddNoteViewModel viewModel;
 
 
     @Override
@@ -40,8 +43,18 @@ public class AddNotesActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        noteDatabase = NoteDatabase.getInstance(getApplication());
+        //noteDatabase = NoteDatabase.getInstance(getApplication());
         initViews();
+        viewModel = new ViewModelProvider(this).get(AddNoteViewModel.class);
+        viewModel.getShouldCloseScreen().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean shouldClose) {
+                if(shouldClose){
+                    finish();
+                }
+            }
+        });
+
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,11 +74,12 @@ public class AddNotesActivity extends AppCompatActivity {
         String text = editTextAddNote.getText().toString().trim();
         int priority = getPriority();
         //int id = database.getNotes().size();
-
+        Note note = new Note(0, text, priority);
+        viewModel.saveNote(note);
+/*
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                Note note = new Note(0, text, priority);
                 //database.add(note);
                 noteDatabase.notesDao().add(note);
                 handler.post(new Runnable() {
@@ -77,6 +91,8 @@ public class AddNotesActivity extends AppCompatActivity {
             }
         });
         thread.start();
+
+ */
     }
 
     private int getPriority(){

@@ -7,6 +7,7 @@ import android.os.Looper;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -53,15 +54,16 @@ public class MainActivity extends AppCompatActivity {
         initViews();
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
         notesAdapter = new NotesAdapter();
-       /*
         notesAdapter.setOnNoteClickListener(new NotesAdapter.OnNoteClickListener() {
             @Override
             public void onNoteClick(Note note) {
-                database.remove(note.getId());
-                showNotes();
+                //database.remove(note.getId());
+                //showNotes();
+
+
             }
         });
-        */
+
         recyclerViewNotes.setAdapter(notesAdapter);
 
         viewModel.getNotes().observe(this, new Observer<List<Note>>() {

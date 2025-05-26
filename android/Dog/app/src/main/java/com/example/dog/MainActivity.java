@@ -1,17 +1,21 @@
 package com.example.dog;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 
 public class MainActivity extends AppCompatActivity {
+
     private MainViewModel viewModel;
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +29,12 @@ public class MainActivity extends AppCompatActivity {
         });
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
         viewModel.loadDogImage();
+        viewModel.getDogImage().observe(this, new Observer<DogImage>() {
+            @Override
+            public void onChanged(DogImage dogImage) {
+                Log.d(TAG, dogImage.toString());
+            }
+        });
 
     }
 

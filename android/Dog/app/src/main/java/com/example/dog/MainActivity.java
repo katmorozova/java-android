@@ -1,12 +1,20 @@
 package com.example.dog;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,5 +30,27 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        loadDogImage();
+    }
+
+
+    private void loadDogImage(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    URL url = new URL(BASE_URL);//crear objeto url
+                    HttpURLConnection urlConnection = (HttpURLConnection)url.openConnection();
+                    InputStream inputStream = urlConnection.getInputStream();//leer datos desde internet
+                    InputStreamReader inputStreamReader = new InputStreamReader(inputStream);//leer datos como simbolos
+                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);//leer datos por linea
+                    String result = bufferedReader.readLine();//devuelve en una linea
+                    Log.d("MainActivity", result);
+
+                } catch (Exception e) {
+                    Log.d("MainActivity", e.toString());
+                }
+            }
+        }).start();
     }
 }

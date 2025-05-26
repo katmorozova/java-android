@@ -16,8 +16,10 @@ import java.net.URL;
 
 public class MainViewModel extends AndroidViewModel {
 
-    private static String BASE_URL = "https://dog.ceo/api/breeds/image/random";
-
+    private static final String BASE_URL = "https://dog.ceo/api/breeds/image/random";
+    private static final String KEY_MESSAGE = "message";
+    private static final String KEY_STATUS = "status";
+    private static final String TAG = "MainViewModel";
 
     public MainViewModel(@NonNull Application application){
         super(application);
@@ -42,14 +44,14 @@ public class MainViewModel extends AndroidViewModel {
                         }
                     }while (result != null);
                     JSONObject jsonObject = new JSONObject(data.toString());
-                    String message = jsonObject.getString("message");
-                    String status = jsonObject.getString("status");
+                    String message = jsonObject.getString(KEY_MESSAGE);
+                    String status = jsonObject.getString(KEY_STATUS);
                     DogImage dogImage = new DogImage(message, status);
 
-                    Log.d("MainActivity", dogImage.toString());
+                    Log.d(TAG, dogImage.toString());
 
                 } catch (Exception e) {
-                    Log.d("MainActivity", e.toString());
+                    Log.d(TAG, e.toString());
                 }
             }
         }).start();

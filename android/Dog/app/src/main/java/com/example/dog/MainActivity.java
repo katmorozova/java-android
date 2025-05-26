@@ -57,9 +57,9 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject(data.toString());
                     String message = jsonObject.getString("message");
                     String status = jsonObject.getString("status");
+                    DogImage dogImage = new DogImage(message, status);
 
-
-                    Log.d("MainActivity", data.toString());
+                    Log.d("MainActivity", dogImage.toString());
 
                 } catch (Exception e) {
                     Log.d("MainActivity", e.toString());

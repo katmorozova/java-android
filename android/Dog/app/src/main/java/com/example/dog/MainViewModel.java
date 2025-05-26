@@ -5,6 +5,8 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import org.json.JSONObject;
 
@@ -21,8 +23,14 @@ public class MainViewModel extends AndroidViewModel {
     private static final String KEY_STATUS = "status";
     private static final String TAG = "MainViewModel";
 
+    private MutableLiveData<DogImage> dogImage = new MutableLiveData<>();
+
     public MainViewModel(@NonNull Application application){
         super(application);
+    }
+
+    public LiveData<DogImage> getDogImage() {
+        return dogImage;
     }
 
     public void loadDogImage(){
@@ -46,9 +54,9 @@ public class MainViewModel extends AndroidViewModel {
                     JSONObject jsonObject = new JSONObject(data.toString());
                     String message = jsonObject.getString(KEY_MESSAGE);
                     String status = jsonObject.getString(KEY_STATUS);
-                    DogImage dogImage = new DogImage(message, status);
-
-                    Log.d(TAG, dogImage.toString());
+                    DogImage image = new DogImage(message, status);
+                    dogImage.postValue(image);
+                    //Log.d(TAG, dogImage.toString());
 
                 } catch (Exception e) {
                     Log.d(TAG, e.toString());

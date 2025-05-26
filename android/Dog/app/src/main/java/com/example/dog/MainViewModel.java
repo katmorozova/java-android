@@ -15,6 +15,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.concurrent.Callable;
+
+import io.reactivex.rxjava3.core.Single;
 
 public class MainViewModel extends AndroidViewModel {
 
@@ -63,6 +66,32 @@ public class MainViewModel extends AndroidViewModel {
                 }
             }
         }).start();
+    }
+
+    private Single<DogImage> loadDogImageRx(){
+        return Single.fromCallable(new Callable<DogImage>() {
+            @Override
+            public DogImage call() throws Exception {
+                    URL url = new URL(BASE_URL);//crear objeto url
+                    HttpURLConnection urlConnection = (HttpURLConnection)url.openConnection();
+                    InputStream inputStream = urlConnection.getInputStream();//leer datos desde internet
+                    InputStreamReader inputStreamReader = new InputStreamReader(inputStream);//leer datos como simbolos
+                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);//leer datos por linea
+                    StringBuilder data = new StringBuilder();
+                    String result;
+                    do{
+                        result = bufferedReader.readLine();//devuelve en una linea
+                        if(result != null){
+                            data.append(result);
+                        }
+                    }while (result != null);
+                    JSONObject jsonObject = new JSONObject(data.toString());
+                    String message = jsonObject.getString(KEY_MESSAGE);
+                    String status = jsonObject.getString(KEY_STATUS);
+                    return new DogImage(message, status);
+
+            }
+        });
     }
 
 }

@@ -44,8 +44,16 @@ public class MainActivity extends AppCompatActivity {
                     InputStream inputStream = urlConnection.getInputStream();//leer datos desde internet
                     InputStreamReader inputStreamReader = new InputStreamReader(inputStream);//leer datos como simbolos
                     BufferedReader bufferedReader = new BufferedReader(inputStreamReader);//leer datos por linea
-                    String result = bufferedReader.readLine();//devuelve en una linea
-                    Log.d("MainActivity", result);
+                    StringBuilder data = new StringBuilder();
+                    String result;
+                    do{
+                        result = bufferedReader.readLine();//devuelve en una linea
+                        if(result != null){
+                            data.append(result);
+                        }
+                    }while (result != null);
+
+                    Log.d("MainActivity", data.toString());
 
                 } catch (Exception e) {
                     Log.d("MainActivity", e.toString());

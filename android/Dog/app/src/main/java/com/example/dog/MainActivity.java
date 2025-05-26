@@ -9,6 +9,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -52,6 +54,10 @@ public class MainActivity extends AppCompatActivity {
                             data.append(result);
                         }
                     }while (result != null);
+                    JSONObject jsonObject = new JSONObject(data.toString());
+                    String message = jsonObject.getString("message");
+                    String status = jsonObject.getString("status");
+
 
                     Log.d("MainActivity", data.toString());
 

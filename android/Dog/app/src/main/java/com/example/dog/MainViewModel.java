@@ -16,6 +16,9 @@ import java.net.URL;
 
 public class MainViewModel extends AndroidViewModel {
 
+    private static String BASE_URL = "https://dog.ceo/api/breeds/image/random";
+
+
     public MainViewModel(@NonNull Application application){
         super(application);
     }

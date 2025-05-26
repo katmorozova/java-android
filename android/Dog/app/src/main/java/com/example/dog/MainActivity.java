@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        viewModel.loadDogImage();
+
     }
 
 

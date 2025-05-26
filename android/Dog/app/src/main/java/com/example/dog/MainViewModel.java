@@ -25,7 +25,7 @@ public class MainViewModel extends AndroidViewModel {
         super(application);
     }
 
-    private void loadDogImage(){
+    public void loadDogImage(){
         new Thread(new Runnable() {
             @Override
             public void run() {

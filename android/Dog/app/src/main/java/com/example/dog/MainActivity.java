@@ -14,6 +14,8 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.bumptech.glide.Glide;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,6 +42,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(DogImage dogImage) {
                 Log.d(TAG, dogImage.toString());
+                //obtenemos ejemplar clase Glide:
+                Glide.with(MainActivity.this)
+                        .load(dogImage.getMessage())
+                        .into(imageViewImages);
             }
         });
         initViews();

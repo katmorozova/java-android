@@ -2,6 +2,9 @@ package com.example.dog;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +16,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    private ImageView imageViewImages;
+    private ProgressBar progressBar;
+    private Button buttonNextImage;
 
     private MainViewModel viewModel;
     private static final String TAG = "MainActivity";
@@ -35,9 +42,13 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, dogImage.toString());
             }
         });
-
+        initViews();
     }
 
-
+    private void initViews(){
+        imageViewImages = findViewById(R.id.imageViewImages);
+        progressBar = findViewById(R.id.progressBar);
+        buttonNextImage = findViewById(R.id.buttonNextImage);
+    }
 
 }

@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,6 +41,16 @@ public class MainActivity extends AppCompatActivity {
         initViews();
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
         viewModel.loadDogImage();
+        viewModel.getIsError().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean isError) {
+                if(isError){
+                    Toast.makeText(MainActivity.this,
+                            "Error de cargar imagen",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         viewModel.getIsLoading().observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean loading) {

@@ -34,6 +34,7 @@ public class MainViewModel extends AndroidViewModel {
 
     private MutableLiveData<DogImage> dogImage = new MutableLiveData<>();
     private MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
+    private MutableLiveData<Boolean> isError = new MutableLiveData<>();
 
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
@@ -49,6 +50,10 @@ public class MainViewModel extends AndroidViewModel {
         return isLoading;
     }
 
+    public LiveData<Boolean> getIsError() {
+        return isError;
+    }
+
     public void loadDogImage(){
         //isLoading.setValue(true);//cuando se inicia la carrega
         Disposable disposable = loadDogImageRx()
@@ -57,6 +62,7 @@ public class MainViewModel extends AndroidViewModel {
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
                     public void accept(Disposable disposable) throws Throwable {
+                        isError.setValue(false);
                         isLoading.setValue(true);//cuando se inicia la carrega
                     }
                 })
@@ -77,6 +83,8 @@ public class MainViewModel extends AndroidViewModel {
                     public void accept(Throwable throwable) throws Throwable {
                         //isLoading.setValue(false);//cuando se termina la carrega
                         Log.d(TAG, "Error: "+throwable.getMessage());
+                        isError.setValue(true);
+
                     }
                 });
         compositeDisposable.add(disposable);

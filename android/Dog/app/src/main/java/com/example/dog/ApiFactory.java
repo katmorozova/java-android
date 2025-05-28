@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiFactory {
 
-    private static final String BASE_URL = "https://dog.ceo/api/breeds/image/random";
+    private static final String BASE_URL = "https://dog.ceo/api/breeds/image/";
 
     private static ApiService apiService;
 

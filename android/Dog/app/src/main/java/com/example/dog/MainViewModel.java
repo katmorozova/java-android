@@ -49,17 +49,20 @@ public class MainViewModel extends AndroidViewModel {
     }
 
     public void loadDogImage(){
+        isLoading.setValue(true);//cuando se inicia la carrega
         Disposable disposable = loadDogImageRx()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<DogImage>() {
                     @Override
                     public void accept(DogImage image) throws Throwable {
+                        isLoading.setValue(false);//cuando se inicia la carrega
                         dogImage.setValue(image);
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Throwable {
+                        isLoading.setValue(false);//cuando se inicia la carrega
                         Log.d(TAG, "Error: "+throwable.getMessage());
                     }
                 });

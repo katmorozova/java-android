@@ -40,6 +40,16 @@ public class MainActivity extends AppCompatActivity {
         initViews();
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
         viewModel.loadDogImage();
+        viewModel.getIsLoading().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean loading) {
+                if(loading){
+                    progressBar.setVisibility(View.VISIBLE);
+                }else{
+                    progressBar.setVisibility(View.GONE);
+                }
+            }
+        });
         viewModel.getDogImage().observe(this, new Observer<DogImage>() {
             @Override
             public void onChanged(DogImage dogImage) {

@@ -2,6 +2,7 @@ package com.example.dog;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        initViews();
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
         viewModel.loadDogImage();
         viewModel.getDogImage().observe(this, new Observer<DogImage>() {
@@ -48,7 +50,13 @@ public class MainActivity extends AppCompatActivity {
                         .into(imageViewImages);
             }
         });
-        initViews();
+        buttonNextImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewModel.loadDogImage();
+            }
+        });
+
     }
 
     private void initViews(){

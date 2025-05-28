@@ -91,6 +91,9 @@ public class MainViewModel extends AndroidViewModel {
     }
 
     private Single<DogImage> loadDogImageRx(){
+        return ApiFactory.getApiService().loadDogImage();
+
+        /*
         return Single.fromCallable(new Callable<DogImage>() {
             @Override
             public DogImage call() throws Exception {
@@ -114,6 +117,8 @@ public class MainViewModel extends AndroidViewModel {
 
             }
         });
+
+         */
     }
 
     @Override

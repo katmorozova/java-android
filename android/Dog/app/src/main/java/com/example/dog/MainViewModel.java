@@ -32,6 +32,8 @@ public class MainViewModel extends AndroidViewModel {
     private static final String TAG = "MainViewModel";
 
     private MutableLiveData<DogImage> dogImage = new MutableLiveData<>();
+    private MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
+
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     public MainViewModel(@NonNull Application application){
@@ -40,6 +42,10 @@ public class MainViewModel extends AndroidViewModel {
 
     public LiveData<DogImage> getDogImage() {
         return dogImage;
+    }
+
+    public LiveData<Boolean> getIsLoading() {
+        return isLoading;
     }
 
     public void loadDogImage(){

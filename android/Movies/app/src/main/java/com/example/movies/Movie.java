@@ -14,7 +14,7 @@ public class Movie {
     private int year;
     @SerializedName("poster")
     private Poster poster;
-    @SerializedName("poster")
+    @SerializedName("rating")
     private Rating rating;
 
     public Movie(int id, String name, String description, int year, Poster poster, Rating rating){
@@ -48,5 +48,17 @@ public class Movie {
 
     public Rating getRating() {
         return rating;
+    }
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", year=" + year +
+                ", poster=" + poster +
+                ", rating=" + rating +
+                '}';
     }
 }

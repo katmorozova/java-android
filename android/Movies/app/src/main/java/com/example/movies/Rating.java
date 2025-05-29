@@ -1,7 +1,10 @@
 package com.example.movies;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Rating {
 
+    @SerializedName("kp")
     private String kp;
 
 

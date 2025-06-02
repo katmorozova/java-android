@@ -21,4 +21,10 @@ public class MainViewModel extends AndroidViewModel {
     public LiveData<List<Movie>> getMovies() {
         return movies;
     }
+
+
+    //metodo que va cargar los datos y insertarles en objeto de movies
+    public void loadMovies(){
+
+    }
 }

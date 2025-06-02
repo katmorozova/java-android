@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("MainActivity", movies.toString());
             }
         });
+        viewModel.loadMovies();
 /*
         ApiFactory.apiService.loadMovies()
                 .subscribeOn(Schedulers.io())

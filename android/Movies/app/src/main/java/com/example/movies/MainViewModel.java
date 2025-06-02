@@ -1,6 +1,7 @@
 package com.example.movies;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -40,12 +41,13 @@ public class MainViewModel extends AndroidViewModel {
                 .subscribe(new Consumer<MovieResponse>() {
                     @Override
                     public void accept(MovieResponse movieResponse) throws Throwable {
-
+//en este metodo nos llegara la collecion de peliculas y se necesita establecerles dentro de liveData
+                        movies.setValue(movieResponse.getMovies());
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Throwable {
-
+                        Log.d("MainViewModel",throwable.toString());
                     }
                 });
         compositeDisposable.add(disposable);

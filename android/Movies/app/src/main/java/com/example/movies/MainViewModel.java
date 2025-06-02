@@ -9,9 +9,14 @@ import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
 
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+
 public class MainViewModel extends AndroidViewModel {
 
-    private MutableLiveData<List<Movie>> movies = new MutableLiveData<>();
+    //para cargar datos con RxJava vamos necesitar objeto de CompositeDisposable
+    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
+
+    private final MutableLiveData<List<Movie>> movies = new MutableLiveData<>();
 
 
     public MainViewModel(@NonNull Application application) {

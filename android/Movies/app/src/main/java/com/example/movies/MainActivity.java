@@ -10,6 +10,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
@@ -21,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
 
     private MainViewModel viewModel;
 
+    private RecyclerView recyclerViewMovies;
+    private MoviesAdapter moviesAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,12 +35,17 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        recyclerViewMovies = findViewById(R.id.recyclerViewMovies);
+        moviesAdapter = new MoviesAdapter();
+        recyclerViewMovies.setAdapter(moviesAdapter);//insertamos Adapter en recyclerView
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
         viewModel.getMovies().observe(this, new Observer<List<Movie>>() {
             @Override
             public void onChanged(List<Movie> movies) {
                 //en caso positivo -> estableser las peliculas en pantalla
                 Log.d("MainActivity", movies.toString());
+                moviesAdapter.setMovies(movies);
             }
         });
         viewModel.loadMovies();
@@ -55,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("MainActivity",throwable.toString());
                     }
                 });
-
  */
     }
 }

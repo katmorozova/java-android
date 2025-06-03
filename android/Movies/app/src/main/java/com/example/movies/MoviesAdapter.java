@@ -1,5 +1,6 @@
 package com.example.movies;
 
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -53,7 +55,12 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
         }else{
             backgroundId = R.drawable.circle_red;
         }
-        holder.textViewRating.setText(movie.getRating().getKp());
+    //Obtenemos background como objeto de Drawable:
+        Drawable background = ContextCompat.getDrawable(holder.itemView.getContext(), backgroundId);
+    //Insertamos background en TextView
+        holder.textViewRating.setBackground(background);
+        //holder.textViewRating.setText(movie.getRating().getKp());
+        holder.textViewRating.setText(String.valueOf(rating));
     }
 
     @Override

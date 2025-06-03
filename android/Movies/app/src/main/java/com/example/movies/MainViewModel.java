@@ -20,13 +20,17 @@ public class MainViewModel extends AndroidViewModel {
 
     //para cargar datos con RxJava vamos necesitar objeto de CompositeDisposable
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
-
     private final MutableLiveData<List<Movie>> movies = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> isLoading = new MutableLiveData<>(false);
 
     private int page = 1;
 
     public MainViewModel(@NonNull Application application) {
         super(application);
+    }
+
+    public LiveData<Boolean> getIsLoading() {
+        return isLoading;
     }
 
     public LiveData<List<Movie>> getMovies() {

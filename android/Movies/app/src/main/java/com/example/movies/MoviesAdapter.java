@@ -41,6 +41,10 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
         Glide.with(holder.itemView)
                 .load(movie.getPoster().getUrl())
                 .into(holder.imageViewPoster);
+
+        //Obtenemos Rating:
+        double rating = movie.getRating().getKp();
+
         holder.textViewRating.setText(movie.getRating().getKp());
     }
 

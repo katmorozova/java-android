@@ -44,7 +44,15 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
 
         //Obtenemos Rating:
         double rating = movie.getRating().getKp();
-
+//Obtenemos id archivo drawable(circle_red, etc..)
+        int backgroundId;
+        if(rating > 7){
+            backgroundId = R.drawable.circle_green;
+        }else if(rating > 5){
+            backgroundId = R.drawable.circle_orange;
+        }else{
+            backgroundId = R.drawable.circle_red;
+        }
         holder.textViewRating.setText(movie.getRating().getKp());
     }
 

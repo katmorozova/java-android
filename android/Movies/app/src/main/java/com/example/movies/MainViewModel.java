@@ -41,6 +41,10 @@ public class MainViewModel extends AndroidViewModel {
 
     //metodo que va cargar los datos y insertarles en objeto de movies
     public void loadMovies(){
+        Boolean loading = isLoading.getValue();
+        if(loading != null && loading){
+            return;
+        }
         Disposable disposable = ApiFactory.apiService.loadMovies(page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -68,6 +72,7 @@ public class MainViewModel extends AndroidViewModel {
                             //en este metodo nos llegara la collecion de peliculas y se necesita establecerles dentro de liveData
                             movies.setValue(movieResponse.getMovies());
                         }
+                        Log.d("MainViewModel", "Loaded: "+page);
                         page++;
                     }
                 }, new Consumer<Throwable>() {

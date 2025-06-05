@@ -12,6 +12,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.bumptech.glide.Glide;
+
 public class MovieDetailActivity extends AppCompatActivity {
 
 
@@ -35,6 +37,13 @@ public class MovieDetailActivity extends AppCompatActivity {
         initViews();
         Movie movie = (Movie)getIntent().getSerializableExtra(EXTRA_MOVIE);//Recibimos objeto movie
 
+        //cargamos imagenes con Glide:
+        Glide.with(this)
+                .load(movie.getPoster().getUrl())
+                .into(imageViewPoster);
+        textViewTitle.setText(movie.getName());
+        textViewYear.setText(String.valueOf(movie.getYear()));
+        textViewDescription.setText(movie.getDescription());
     }
 
     private void initViews(){

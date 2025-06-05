@@ -1,5 +1,7 @@
 package com.example.movies;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,10 +14,12 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MovieDetailActivity extends AppCompatActivity {
 
+
+    public static final String EXTRA_MOVIE = "movie";
     private ImageView imageViewPoster;
     private TextView textViewTitle;
     private TextView textViewYear;
-    private TextView textViewDescription
+    private TextView textViewDescription;
 
 
     @Override
@@ -37,5 +41,12 @@ public class MovieDetailActivity extends AppCompatActivity {
         textViewYear = findViewById(R.id.textViewYear);
         textViewDescription = findViewById(R.id.textViewDescription);
 
+    }
+
+
+    public static Intent newIntent(Context context, Movie movie){
+        Intent intent = new Intent(context, MovieDetailActivity.class);
+        intent.putExtra(EXTRA_MOVIE, movie);
+        return  intent;
     }
 }

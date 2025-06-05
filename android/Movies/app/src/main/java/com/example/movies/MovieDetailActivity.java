@@ -33,6 +33,8 @@ public class MovieDetailActivity extends AppCompatActivity {
             return insets;
         });
         initViews();
+        Movie movie = (Movie)getIntent().getSerializableExtra(EXTRA_MOVIE);//Recibimos objeto movie
+
     }
 
     private void initViews(){
@@ -46,7 +48,7 @@ public class MovieDetailActivity extends AppCompatActivity {
 
     public static Intent newIntent(Context context, Movie movie){
         Intent intent = new Intent(context, MovieDetailActivity.class);
-        intent.putExtra(EXTRA_MOVIE, movie);
+        intent.putExtra(EXTRA_MOVIE, movie);//Hemos enviado objeto movie
         return  intent;
     }
 }

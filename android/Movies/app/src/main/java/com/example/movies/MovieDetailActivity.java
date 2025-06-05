@@ -1,6 +1,8 @@
 package com.example.movies;
 
 import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +11,12 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MovieDetailActivity extends AppCompatActivity {
+
+    private ImageView imageViewPoster;
+    private TextView textViewTitle;
+    private TextView textViewYear;
+    private TextView textViewDescription
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +28,14 @@ public class MovieDetailActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        initViews();
+    }
+
+    private void initViews(){
+        imageViewPoster = findViewById(R.id.imageViewPoster);
+        textViewTitle = findViewById(R.id.textViewTitle);
+        textViewYear = findViewById(R.id.textViewYear);
+        textViewDescription = findViewById(R.id.textViewDescription);
+
     }
 }

@@ -10,6 +10,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
@@ -20,6 +22,8 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class MainActivity extends AppCompatActivity {
 
     private MainViewModel viewModel;
+    private MoviesAdapter moviesAdapter;
+    private RecyclerView recyclerViewMovies;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +35,21 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        recyclerViewMovies = findViewById(R.id.recyclerViewMovies);
+        //Creamos adapter
+        moviesAdapter = new MoviesAdapter();
+        //Insertamos adapter en recyclerView
+        recyclerViewMovies.setAdapter(moviesAdapter);
+        recyclerViewMovies.setLayoutManager(new GridLayoutManager(this,2 ));
+
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
         viewModel.getMovies().observe(this, new Observer<List<Movie>>() {
         @Override
         public void onChanged(List<Movie> movies) {
 //en caso de exito mostrar en pantalla
             Log.d("MainActivity", movies.toString());
+            //añadir movies en adapter
+            moviesAdapter.setMovies(movies);
         }
     });
     viewModel.loadMovies();

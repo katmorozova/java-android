@@ -22,6 +22,7 @@ public class MainViewModel extends AndroidViewModel {
     private MutableLiveData<List<Movie>> movies = new MutableLiveData<>();
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
+    private int page = 1;
 
     public MainViewModel(@NonNull Application application) {
         super(application);
@@ -33,13 +34,14 @@ public class MainViewModel extends AndroidViewModel {
 
     //metodo que va cargar datos y añadir en objeto movies
     public void loadMovies(){
-        Disposable disposable = ApiFactory.apiService.loadMovies()
+        Disposable disposable = ApiFactory.apiService.loadMovies(page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<MovieResponse>() {
                     @Override
                     public void accept(MovieResponse movieResponse) throws Throwable {
-//aqui nos llega la collecion de peliculas, les necesitamos añadir dentro de LiveData
+                        page++;
+                        //aqui nos llega la collecion de peliculas, les necesitamos añadir dentro de LiveData
                         movies.setValue(movieResponse.getMovies());
                     }
                 }, new Consumer<Throwable>() {

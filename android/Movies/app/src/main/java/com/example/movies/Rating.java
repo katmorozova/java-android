@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 public class Rating {
 
     @SerializedName("kp")
-    double kp;
+    private double kp;
 
     public Rating(double kp) {
         this.kp = kp;

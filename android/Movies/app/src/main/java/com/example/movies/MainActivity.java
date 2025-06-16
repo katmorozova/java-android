@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             moviesAdapter.setMovies(movies);
         }
     });
-    viewModel.loadMovies();
+    //viewModel.loadMovies();
     //Suscribimos en objeto de liveData isLoading para mostrar progressBar
     viewModel.getIsLoading().observe(this, new Observer<Boolean>() {
         @Override

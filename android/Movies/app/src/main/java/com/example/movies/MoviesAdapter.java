@@ -67,6 +67,11 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
         return movies.size();
     }
 
+    //callback para reacionar a un scroll hasta final de la pantalla
+    interface OnReachEndListener{
+        void onReachEnd();
+    }
+
     class MovieViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView imageViewPoster;

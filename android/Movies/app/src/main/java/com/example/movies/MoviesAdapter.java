@@ -65,6 +65,10 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
         //insertamos background en textViewRating
         holder.textViewRating.setBackground(background);
         holder.textViewRating.setText(String.valueOf(rating));
+
+        if(position == movies.size() - 1 && onReachEndListener != null){
+            onReachEndListener.onReachEnd();
+        }
     }
 
     @Override

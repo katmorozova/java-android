@@ -20,6 +20,9 @@ public class MainViewModel extends AndroidViewModel {
 
 //collecion de peliculas
     private MutableLiveData<List<Movie>> movies = new MutableLiveData<>();
+    //objeto liveData que guarda valor tipo boolean: va carga o no de las peliculas
+    private MutableLiveData<Boolean> isLoading = new MutableLiveData<>(false);
+
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     private int page = 1;
@@ -30,6 +33,10 @@ public class MainViewModel extends AndroidViewModel {
 
     public LiveData<List<Movie>> getMovies() {
         return movies;
+    }
+
+    public LiveData<Boolean> getIsLoading() {
+        return isLoading;
     }
 
     //metodo que va cargar datos y añadir en objeto movies

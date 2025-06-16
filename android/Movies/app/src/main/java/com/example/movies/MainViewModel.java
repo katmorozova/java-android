@@ -40,14 +40,14 @@ public class MainViewModel extends AndroidViewModel {
                 .subscribe(new Consumer<MovieResponse>() {
                     @Override
                     public void accept(MovieResponse movieResponse) throws Throwable {
-//Obtenemos la peliculas cargadas antes
+                        //Obtenemos la peliculas cargadas antes
                         List<Movie> loadedMovies = movies.getValue();
                         if(loadedMovies != null){
                             loadedMovies.addAll(movieResponse.getMovies());
                         //añadimos nueva collecion de pelis en livedata
                             movies.setValue(loadedMovies);
                         }else{
-                            movies.setValue(loadedMovies);
+                            movies.setValue(movieResponse.getMovies());
                         }
                         page++;
                         //aqui nos llega la collecion de peliculas, les necesitamos añadir dentro de LiveData

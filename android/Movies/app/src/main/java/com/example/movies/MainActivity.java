@@ -2,6 +2,8 @@ package com.example.movies;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,8 +24,10 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class MainActivity extends AppCompatActivity {
 
     private MainViewModel viewModel;
+
     private MoviesAdapter moviesAdapter;
     private RecyclerView recyclerViewMovies;
+    private ProgressBar progressBarLoading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        progressBarLoading = findViewById(R.id.progressBarLoading);
         recyclerViewMovies = findViewById(R.id.recyclerViewMovies);
         //Creamos adapter
         moviesAdapter = new MoviesAdapter();
@@ -53,6 +58,17 @@ public class MainActivity extends AppCompatActivity {
         }
     });
     viewModel.loadMovies();
+    //Suscribimos en objeto de liveData isLoading para mostrar progressBar
+    viewModel.getIsLoading().observe(this, new Observer<Boolean>() {
+        @Override
+        public void onChanged(Boolean isLoading) {
+            if(isLoading){
+                progressBarLoading.setVisibility(View.VISIBLE);
+            }else{
+                progressBarLoading.setVisibility(View.GONE);
+            }
+        }
+    });
     moviesAdapter.setOnReachEndListener(new MoviesAdapter.OnReachEndListener() {
         @Override
         public void onReachEnd() {

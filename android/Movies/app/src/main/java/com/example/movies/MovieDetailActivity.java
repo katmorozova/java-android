@@ -14,6 +14,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
@@ -31,6 +32,7 @@ public class MovieDetailActivity extends AppCompatActivity {
     private TextView textViewTitle;
     private TextView textViewYear;
     private TextView textViewDescription;
+    private RecyclerView recyclerViewTrailers;
 
     private MovieDetailViewModel viewModel;
 
@@ -78,6 +80,7 @@ public class MovieDetailActivity extends AppCompatActivity {
         textViewTitle = findViewById(R.id.textViewTitle);
         textViewYear = findViewById(R.id.textViewYear);
         textViewDescription = findViewById(R.id.textViewDescription);
+        recyclerViewTrailers = findViewById(R.id.recyclerViewTrailers);
     }
 
    public static Intent newIntent(Context context, Movie movie){

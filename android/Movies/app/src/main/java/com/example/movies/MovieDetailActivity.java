@@ -56,22 +56,9 @@ public class MovieDetailActivity extends AppCompatActivity {
         textViewYear.setText(String.valueOf(movie.getYear()));
         //Obtenemos descripcion de la pelicula
         textViewDescription.setText(movie.getDescription());
+//llamamos la carga de los trailers desde viewModel
+        viewModel.loadTrailers(movie.getId());
 
-        //enviamos peticion para cargar los trailers
-        ApiFactory.apiService.loadTrailers(movie.getId())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<TrailerResponse>() {
-                    @Override
-                    public void accept(TrailerResponse trailerResponse) throws Throwable {
-                        Log.d("MovieDetailActivity", trailerResponse.toString());
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Throwable {
-                        Log.d("MovieDetailActivity",throwable.toString() );
-                    }
-                });
 
     }
 

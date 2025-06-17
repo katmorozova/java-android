@@ -12,9 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
+
+import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.functions.Consumer;
@@ -58,6 +61,14 @@ public class MovieDetailActivity extends AppCompatActivity {
         textViewDescription.setText(movie.getDescription());
 //llamamos la carga de los trailers desde viewModel
         viewModel.loadTrailers(movie.getId());
+        //inscribimos en los trailers cargados desde viewModel
+        viewModel.getTrailers().observe(this, new Observer<List<Trailer>>() {
+            @Override
+            public void onChanged(List<Trailer> trailers) {
+                //insertamos trailers en MovieAdapter
+
+            }
+        });
 
 
     }

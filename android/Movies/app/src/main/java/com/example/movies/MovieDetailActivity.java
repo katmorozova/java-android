@@ -66,7 +66,7 @@ public class MovieDetailActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<Trailer> trailers) {
                 //insertamos trailers en MovieAdapter
-
+                Log.d("MovieDetailActivity", trailers.toString());
             }
         });
 

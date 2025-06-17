@@ -75,6 +75,12 @@ public class MovieDetailActivity extends AppCompatActivity {
                 trailersAdapter.setTrailers(trailers);
             }
         });
+        trailersAdapter.setOnTrailerClickListener(new TrailersAdapter.OnTrailerClickListener() {
+            @Override
+            public void onTrailerClick(Trailer trailer) {
+
+            }
+        });
 
 
     }

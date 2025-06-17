@@ -43,6 +43,8 @@ public class MovieDetailActivity extends AppCompatActivity {
                 .into(imageViewPoster);
         //Obtenemos titulo de la pelicula
         textViewTitle.setText(movie.getName());
+        //Obtenemos año para pelicula
+        textViewYear.setText(String.valueOf(movie.getYear()));
     }
 
     private void initViews(){

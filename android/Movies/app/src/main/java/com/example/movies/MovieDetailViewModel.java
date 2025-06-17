@@ -38,6 +38,8 @@ public class MovieDetailViewModel extends AndroidViewModel {
                     @Override
                     public void accept(TrailerResponse trailerResponse) throws Throwable {
                         Log.d("MovieDetailViewModel", trailerResponse.toString());
+                        //Obtenemos peliculas desde trailersResponse y insertamos en liveData
+                        trailers.setValue(trailerResponse.getTrailersList().getTrailers());
                     }
                 }, new Consumer<Throwable>() {
                     @Override

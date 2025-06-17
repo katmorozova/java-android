@@ -51,6 +51,7 @@ public class MovieDetailActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this).get(MovieDetailViewModel.class);
         initViews();
         trailersAdapter = new TrailersAdapter();
+        recyclerViewTrailers.setAdapter(trailersAdapter);
         //obtenemos objeto Movie
         Movie movie = (Movie) getIntent().getSerializableExtra(EXTRA_MOVIE);
         //cargamos los imagenes
@@ -71,6 +72,7 @@ public class MovieDetailActivity extends AppCompatActivity {
             public void onChanged(List<Trailer> trailers) {
                 //insertamos trailers en MovieAdapter
                 Log.d("MovieDetailActivity", trailers.toString());
+                trailersAdapter.setTrailers(trailers);
             }
         });
 

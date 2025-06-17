@@ -33,6 +33,9 @@ public class MovieDetailActivity extends AppCompatActivity {
             return insets;
         });
         initViews();
+        //obtenemos objeto Movie
+        Movie movie = (Movie) getIntent().getSerializableExtra(EXTRA_MOVIE);
+
     }
 
     private void initViews(){

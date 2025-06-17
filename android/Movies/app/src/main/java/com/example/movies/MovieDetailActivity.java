@@ -33,6 +33,7 @@ public class MovieDetailActivity extends AppCompatActivity {
     private TextView textViewYear;
     private TextView textViewDescription;
     private RecyclerView recyclerViewTrailers;
+    private TrailersAdapter trailersAdapter;
 
     private MovieDetailViewModel viewModel;
 
@@ -49,6 +50,7 @@ public class MovieDetailActivity extends AppCompatActivity {
         });
         viewModel = new ViewModelProvider(this).get(MovieDetailViewModel.class);
         initViews();
+        trailersAdapter = new TrailersAdapter();
         //obtenemos objeto Movie
         Movie movie = (Movie) getIntent().getSerializableExtra(EXTRA_MOVIE);
         //cargamos los imagenes

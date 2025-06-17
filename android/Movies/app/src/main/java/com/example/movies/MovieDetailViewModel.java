@@ -35,18 +35,18 @@ public class MovieDetailViewModel extends AndroidViewModel {
         Disposable disposable = ApiFactory.apiService.loadTrailers(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .map(new Function<TrailerResponse, List<Trailer>>() {
+                .map(new Function<TrailerResponse, List<Trailer>>() { //convierte un tipo de datos en otros
                     @Override
                     public List<Trailer> apply(TrailerResponse trailerResponse) throws Throwable {
                         return trailerResponse.getTrailersList().getTrailers();
                     }
                 })
-                .subscribe(new Consumer<TrailerResponse>() {
+                .subscribe(new Consumer<List<Trailer>>() {
                     @Override
-                    public void accept(TrailerResponse trailerResponse) throws Throwable {
-                        Log.d("MovieDetailViewModel", trailerResponse.toString());
+                    public void accept(List<Trailer> trailerList) throws Throwable {
+                        Log.d("MovieDetailViewModel", trailerList.toString());
                         //Obtenemos peliculas desde trailersResponse y insertamos en liveData
-                        trailers.setValue(trailerResponse.getTrailersList().getTrailers());
+                        trailers.setValue(trailerList);
                     }
                 }, new Consumer<Throwable>() {
                     @Override

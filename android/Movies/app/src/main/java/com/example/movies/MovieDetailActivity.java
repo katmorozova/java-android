@@ -37,10 +37,12 @@ public class MovieDetailActivity extends AppCompatActivity {
         initViews();
         //obtenemos objeto Movie
         Movie movie = (Movie) getIntent().getSerializableExtra(EXTRA_MOVIE);
-//cargamos los imagenes
+        //cargamos los imagenes
         Glide.with(this)
                 .load(movie.getPoster().getUrl())
                 .into(imageViewPoster);
+        //Obtenemos titulo de la pelicula
+        textViewTitle.setText(movie.getName());
     }
 
     private void initViews(){

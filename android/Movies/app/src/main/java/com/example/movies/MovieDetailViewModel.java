@@ -21,6 +21,8 @@ public class MovieDetailViewModel extends AndroidViewModel {
 
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
     private MutableLiveData<List<Trailer>> trailers = new MutableLiveData<>();
+    private MutableLiveData<List<Review>> reviews = new MutableLiveData<>();//objeto de liveData que va guardar la lista de reseñas
+
 
     public MovieDetailViewModel(@NonNull Application application) {
         super(application);
@@ -28,6 +30,10 @@ public class MovieDetailViewModel extends AndroidViewModel {
 
     public LiveData<List<Trailer>> getTrailers() {
         return trailers;
+    }
+
+    public LiveData<List<Review>> getReviews() {
+        return reviews;
     }
 
     public void loadTrailers(int id){

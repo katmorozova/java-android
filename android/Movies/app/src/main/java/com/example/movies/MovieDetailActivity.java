@@ -34,7 +34,9 @@ public class MovieDetailActivity extends AppCompatActivity {
     private TextView textViewYear;
     private TextView textViewDescription;
     private RecyclerView recyclerViewTrailers;
+    private RecyclerView recyclerViewReviews;
     private TrailersAdapter trailersAdapter;
+    private ReviewAdapter reviewAdapter;
 
     private MovieDetailViewModel viewModel;
 
@@ -52,8 +54,9 @@ public class MovieDetailActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this).get(MovieDetailViewModel.class);
         initViews();
         trailersAdapter = new TrailersAdapter();
+        reviewAdapter = new ReviewAdapter();
         recyclerViewTrailers.setAdapter(trailersAdapter);
-        
+        recyclerViewReviews.setAdapter(reviewAdapter);
         //obtenemos objeto Movie
         Movie movie = (Movie) getIntent().getSerializableExtra(EXTRA_MOVIE);
         //cargamos los imagenes
@@ -93,6 +96,7 @@ public class MovieDetailActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<Review> reviewList) {
                 Log.d("MovieDetailActivity", reviewList.toString());
+                reviewAdapter.setReviews(reviewList);
             }
         });
 //arrancamos la carrega de los reviews
@@ -106,6 +110,7 @@ public class MovieDetailActivity extends AppCompatActivity {
         textViewYear = findViewById(R.id.textViewYear);
         textViewDescription = findViewById(R.id.textViewDescription);
         recyclerViewTrailers = findViewById(R.id.recyclerViewTrailers);
+        recyclerViewReviews = findViewById(R.id.recyclerViewReviews);
     }
 
    public static Intent newIntent(Context context, Movie movie){

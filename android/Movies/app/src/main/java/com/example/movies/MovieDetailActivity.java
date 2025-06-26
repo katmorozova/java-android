@@ -53,6 +53,7 @@ public class MovieDetailActivity extends AppCompatActivity {
         initViews();
         trailersAdapter = new TrailersAdapter();
         recyclerViewTrailers.setAdapter(trailersAdapter);
+        
         //obtenemos objeto Movie
         Movie movie = (Movie) getIntent().getSerializableExtra(EXTRA_MOVIE);
         //cargamos los imagenes
@@ -80,9 +81,25 @@ public class MovieDetailActivity extends AppCompatActivity {
             @Override
             public void onTrailerClick(Trailer trailer) {
 //mostrar video en browser
+                Log.d("MovieDetailActivity", trailer.toString());
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(trailer.getUrl()));
                 startActivity(intent);
+            }
+        });
+
+ApiFactory.apiService.loadReviews(movie.getId())
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new Consumer<ReviewResponse>() {
+            @Override
+            public void accept(ReviewResponse reviewResponse) throws Throwable {
+                Log.d("MovieDetailActivity", reviewResponse.toString());
+            }
+        }, new Consumer<Throwable>() {
+            @Override
+            public void accept(Throwable throwable) throws Throwable {
+                Log.d("MovieDetailActivity", throwable.toString());
             }
         });
 

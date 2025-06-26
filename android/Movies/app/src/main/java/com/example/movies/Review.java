@@ -11,10 +11,12 @@ public class Review {
     @SerializedName("type")
     private String type;
 
+
     public Review(String author, String review, String type) {
         this.author = author;
         this.review = review;
         this.type = type;
+
     }
 
     public String getAuthor() {
@@ -28,6 +30,7 @@ public class Review {
     public String getType() {
         return type;
     }
+
 
     @Override
     public String toString() {

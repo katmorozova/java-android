@@ -36,6 +36,33 @@ public class MovieDetailViewModel extends AndroidViewModel {
         return reviews;
     }
 
+    public void loadReviews(int movieId){
+        Disposable disposable = ApiFactory.apiService.loadReviews(movieId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .map(new Function<ReviewResponse, List<Review>>() {
+                    @Override
+                    public List<Review> apply(ReviewResponse reviewResponse)throws  Throwable{
+                        return reviewResponse.getReviews();
+                    }
+                })
+                .subscribe(new Consumer<List<Review>>() {
+                    @Override
+                    public void accept(List<Review> reviewList) throws Throwable {
+                        Log.d("MovieDetailActivity", reviewList.toString());
+                    //Insertamos reseñas dentro de liveData
+                        reviews.setValue(reviewList);
+
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Throwable {
+                        Log.d("MovieDetailActivity", throwable.toString());
+                    }
+                });
+        compositeDisposable.add(disposable);
+    }
+
     public void loadTrailers(int id){
         //enviamos peticion para cargar los trailers
         Disposable disposable = ApiFactory.apiService.loadTrailers(id)

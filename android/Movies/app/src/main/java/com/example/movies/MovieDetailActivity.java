@@ -88,21 +88,15 @@ public class MovieDetailActivity extends AppCompatActivity {
             }
         });
 
-ApiFactory.apiService.loadReviews(movie.getId())
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(new Consumer<ReviewResponse>() {
+//mostrar reviews
+        viewModel.getReviews().observe(this, new Observer<List<Review>>() {
             @Override
-            public void accept(ReviewResponse reviewResponse) throws Throwable {
-                Log.d("MovieDetailActivity", reviewResponse.toString());
-            }
-        }, new Consumer<Throwable>() {
-            @Override
-            public void accept(Throwable throwable) throws Throwable {
-                Log.d("MovieDetailActivity", throwable.toString());
+            public void onChanged(List<Review> reviewList) {
+                Log.d("MovieDetailActivity", reviewList.toString());
             }
         });
-
+//arrancamos la carrega de los reviews
+        viewModel.loadReviews(movie.getId());
 
     }
 

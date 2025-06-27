@@ -104,21 +104,30 @@ public class MovieDetailActivity extends AppCompatActivity {
         });
 //arrancamos la carrega de los reviews
         viewModel.loadReviews(movie.getId());
+        //añadimos la pelicula en favoritos
+        /*
+        //es para comprobar
+        MovieDao movieDao = MovieDatabase.getInstance(getApplication()).movieDao();
+        movieDao.insertMovie(movie)
+                .subscribeOn(Schedulers.io())
+                .subscribe();
+
+         */
+        Drawable starOff = ContextCompat.getDrawable(
+                MovieDetailActivity.this,
+                android.R.drawable.star_big_off
+        );
+        Drawable starOn = ContextCompat.getDrawable(
+                MovieDetailActivity.this,
+                android.R.drawable.star_big_on
+        );
 
         viewModel.getFavouriteMovie(movie.getId()).observe(this, new Observer<Movie>() {
             @Override
             public void onChanged(Movie movieFromDb) {
                 if(movieFromDb == null){
-                    Drawable starOff = ContextCompat.getDrawable(
-                            MovieDetailActivity.this,
-                            android.R.drawable.star_big_off
-                    );
                     imageViewStar.setImageDrawable(starOff);
                 }else{
-                    Drawable starOn = ContextCompat.getDrawable(
-                            MovieDetailActivity.this,
-                            android.R.drawable.star_big_on
-                    );
                     imageViewStar.setImageDrawable(starOn);
                 }
             }
@@ -126,11 +135,7 @@ public class MovieDetailActivity extends AppCompatActivity {
 
 
 
-        //añadimos la pelicula en favoritos
-        MovieDao movieDao = MovieDatabase.getInstance(getApplication()).movieDao();
-        movieDao.insertMovie(movie)
-                .subscribeOn(Schedulers.io())
-                .subscribe();
+
 
 
 

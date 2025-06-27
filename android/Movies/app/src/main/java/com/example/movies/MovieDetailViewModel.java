@@ -70,6 +70,14 @@ public class MovieDetailViewModel extends AndroidViewModel {
         compositeDisposable.add(disposable);
     }
 
+    public void insertMovie(Movie movie){
+        Disposable disposable = movieDao.insertMovie(movie)
+                .subscribeOn(Schedulers.io())
+                .subscribe();
+        //si la app va ser publicada en playmarket ha de añadir la comprobacion
+        compositeDisposable.add(disposable);
+    }
+
     public void loadTrailers(int id){
         //enviamos peticion para cargar los trailers
         Disposable disposable = ApiFactory.apiService.loadTrailers(id)

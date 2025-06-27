@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -127,8 +128,22 @@ public class MovieDetailActivity extends AppCompatActivity {
             public void onChanged(Movie movieFromDb) {
                 if(movieFromDb == null){
                     imageViewStar.setImageDrawable(starOff);
+//tras hacer clic sobre estrella si la pelicula no se encuentra en base de datos  -> se añade
+                    imageViewStar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            viewModel.insertMovie(movie);
+                        }
+                    });
                 }else{
                     imageViewStar.setImageDrawable(starOn);
+//tras hacer clic sobre estrella si la pelicula se encuentra en base de datos  -> se elimina
+                    imageViewStar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            viewModel.removeMovie(movie.getId());
+                        }
+                    });
                 }
             }
         });

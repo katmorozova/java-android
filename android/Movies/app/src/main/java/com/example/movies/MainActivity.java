@@ -40,6 +40,10 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        Intent intent = FavouriteMovieActivity.newIntent(this);
+        startActivity(intent);
+
         progressBarLoading = findViewById(R.id.progressBarLoading);
         recyclerViewMovies = findViewById(R.id.recyclerViewMovies);
         //Creamos adapter

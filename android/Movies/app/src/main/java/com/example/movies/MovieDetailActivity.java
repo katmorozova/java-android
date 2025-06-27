@@ -2,6 +2,7 @@ package com.example.movies;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -37,6 +39,7 @@ public class MovieDetailActivity extends AppCompatActivity {
     private RecyclerView recyclerViewReviews;
     private TrailersAdapter trailersAdapter;
     private ReviewAdapter reviewAdapter;
+    private ImageView imageViewStar;
 
     private MovieDetailViewModel viewModel;
 
@@ -101,11 +104,36 @@ public class MovieDetailActivity extends AppCompatActivity {
         });
 //arrancamos la carrega de los reviews
         viewModel.loadReviews(movie.getId());
+
+        viewModel.getFavouriteMovie(movie.getId()).observe(this, new Observer<Movie>() {
+            @Override
+            public void onChanged(Movie movieFromDb) {
+                if(movieFromDb == null){
+                    Drawable starOff = ContextCompat.getDrawable(
+                            MovieDetailActivity.this,
+                            android.R.drawable.star_big_off
+                    );
+                    imageViewStar.setImageDrawable(starOff);
+                }else{
+                    Drawable starOn = ContextCompat.getDrawable(
+                            MovieDetailActivity.this,
+                            android.R.drawable.star_big_on
+                    );
+                    imageViewStar.setImageDrawable(starOn);
+                }
+            }
+        });
+
+
+
         //añadimos la pelicula en favoritos
         MovieDao movieDao = MovieDatabase.getInstance(getApplication()).movieDao();
         movieDao.insertMovie(movie)
                 .subscribeOn(Schedulers.io())
                 .subscribe();
+
+
+
     }
 
     private void initViews(){
@@ -115,6 +143,7 @@ public class MovieDetailActivity extends AppCompatActivity {
         textViewDescription = findViewById(R.id.textViewDescription);
         recyclerViewTrailers = findViewById(R.id.recyclerViewTrailers);
         recyclerViewReviews = findViewById(R.id.recyclerViewReviews);
+        imageViewStar = findViewById(R.id.imageViewStar);
     }
 
    public static Intent newIntent(Context context, Movie movie){

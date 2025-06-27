@@ -23,9 +23,16 @@ public class MovieDetailViewModel extends AndroidViewModel {
     private MutableLiveData<List<Trailer>> trailers = new MutableLiveData<>();
     private MutableLiveData<List<Review>> reviews = new MutableLiveData<>();//objeto de liveData que va guardar la lista de reseñas
 
+    private final MovieDao movieDao;
 
     public MovieDetailViewModel(@NonNull Application application) {
         super(application);
+        movieDao = MovieDatabase.getInstance(application).movieDao();
+    }
+
+    //obtener pelicula desde base de datos
+    public LiveData<Movie> getFavouriteMovie(int movieId){
+        return movieDao.getFavouriteMovie(movieId);
     }
 
     public LiveData<List<Trailer>> getTrailers() {

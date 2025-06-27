@@ -1,5 +1,6 @@
 package com.example.movies;
 
+import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -19,8 +20,10 @@ public class Movie implements Serializable {
     private String description;
     @SerializedName("year")
     private int year;
+    @Embedded
     @SerializedName("poster")
     private Poster poster;
+    @Embedded
     @SerializedName("rating")
     private Rating rating;
 

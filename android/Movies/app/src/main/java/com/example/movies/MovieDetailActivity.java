@@ -101,7 +101,11 @@ public class MovieDetailActivity extends AppCompatActivity {
         });
 //arrancamos la carrega de los reviews
         viewModel.loadReviews(movie.getId());
-
+        //añadimos la pelicula en favoritos
+        MovieDao movieDao = MovieDatabase.getInstance(getApplication()).movieDao();
+        movieDao.insertMovie(movie)
+                .subscribeOn(Schedulers.io())
+                .subscribe();
     }
 
     private void initViews(){

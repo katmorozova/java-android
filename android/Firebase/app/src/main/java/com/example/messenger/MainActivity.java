@@ -58,5 +58,44 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+        //Salir de la app
+        auth.signOut();
+
+        //E
+        auth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                //si usuario autorizado ->mostrr pantalla con todos los usuarios
+                FirebaseUser user = auth.getCurrentUser();
+                if (user == null){
+                    Log.d("MainActivity", "Not autorized");
+                }else{
+                    Log.d("MainActivity", "Autorized");
+                }
+            }
+        });
+
+
+        //entrar en la app
+        auth.signInWithEmailAndPassword("email@email.com", "123456").addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+            @Override
+            public void onSuccess(AuthResult authResult) {
+               /*
+                //obtenemos usuario
+                FirebaseUser user = auth.getCurrentUser();
+                if (user == null){
+                    Log.d("MainActivity", "Not autorized");
+                }else{
+                    Log.d("MainActivity", "Autorized");
+                }
+                */
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("MainActivity", e.getMessage());
+                Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

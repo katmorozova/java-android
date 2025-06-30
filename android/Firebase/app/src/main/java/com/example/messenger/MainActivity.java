@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         //Salir de la app
         auth.signOut();
 
-        //E
+        //Evento para autorizacion
         auth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -95,6 +95,19 @@ public class MainActivity extends AppCompatActivity {
             public void onFailure(@NonNull Exception e) {
                 Log.d("MainActivity", e.getMessage());
                 Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //Reestablecida contraseña
+        auth.sendPasswordResetEmail("email@email.com").addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Log.d("MainActivity", "Success");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("MainActivity", e.getMessage());
             }
         });
     }

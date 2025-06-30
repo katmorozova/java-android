@@ -17,7 +17,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
 
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -35,9 +35,9 @@ public class MainActivity extends AppCompatActivity {
         //obtenemos usuario
         FirebaseUser user = auth.getCurrentUser();
         if (user == null){
-            Log.d("MainActivity", "Not autorized");
+            Log.d("LoginActivity", "Not autorized");
         }else{
-            Log.d("MainActivity", "Autorized");
+            Log.d("LoginActivity", "Autorized");
         }
         //registramos nuevo usuario
         auth.createUserWithEmailAndPassword("email@email.com", "123456").addOnSuccessListener(new OnSuccessListener<AuthResult>() {
@@ -46,16 +46,16 @@ public class MainActivity extends AppCompatActivity {
                 //obtenemos usuario
                 FirebaseUser user = auth.getCurrentUser();
                 if (user == null){
-                    Log.d("MainActivity", "Not autorized");
+                    Log.d("LoginActivity", "Not autorized");
                 }else{
-                    Log.d("MainActivity", "Autorized");
+                    Log.d("LoginActivity", "Autorized");
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.d("MainActivity", e.getMessage());
-                Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.d("LoginActivity", e.getMessage());
+                Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
         //Salir de la app
@@ -68,9 +68,9 @@ public class MainActivity extends AppCompatActivity {
                 //si usuario autorizado ->mostrr pantalla con todos los usuarios
                 FirebaseUser user = auth.getCurrentUser();
                 if (user == null){
-                    Log.d("MainActivity", "Not autorized");
+                    Log.d("LoginActivity", "Not autorized");
                 }else{
-                    Log.d("MainActivity", "Autorized");
+                    Log.d("LoginActivity", "Autorized");
                 }
             }
         });
@@ -84,17 +84,17 @@ public class MainActivity extends AppCompatActivity {
                 //obtenemos usuario
                 FirebaseUser user = auth.getCurrentUser();
                 if (user == null){
-                    Log.d("MainActivity", "Not autorized");
+                    Log.d("LoginActivity", "Not autorized");
                 }else{
-                    Log.d("MainActivity", "Autorized");
+                    Log.d("LoginActivity", "Autorized");
                 }
                 */
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.d("MainActivity", e.getMessage());
-                Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.d("LoginActivity", e.getMessage());
+                Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -102,12 +102,12 @@ public class MainActivity extends AppCompatActivity {
         auth.sendPasswordResetEmail("email@email.com").addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
-                Log.d("MainActivity", "Success");
+                Log.d("LoginActivity", "Success");
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.d("MainActivity", e.getMessage());
+                Log.d("LoginActivity", e.getMessage());
             }
         });
     }

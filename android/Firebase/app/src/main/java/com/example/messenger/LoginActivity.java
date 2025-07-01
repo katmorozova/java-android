@@ -2,6 +2,9 @@ package com.example.messenger;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -19,6 +22,13 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
+
+    private EditText editTextEmail;
+    private EditText editTextPassword;
+    private Button buttonLogin;
+    private TextView textViewResetPassword;
+    private TextView textViewRegister;
+
     private FirebaseAuth auth;
 
     @Override
@@ -31,6 +41,9 @@ public class LoginActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        initViews();
+
+
         auth = FirebaseAuth.getInstance();
         //obtenemos usuario
         FirebaseUser user = auth.getCurrentUser();
@@ -110,5 +123,13 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d("LoginActivity", e.getMessage());
             }
         });
+    }
+
+    private void initViews(){
+        editTextEmail = findViewById(R.id.editTextEmail);
+        editTextPassword = findViewById(R.id.editTextPassword);
+        buttonLogin = findViewById(R.id.buttonLogin);
+        textViewResetPassword = findViewById(R.id.textViewResetPassword);
+        textViewRegister = findViewById(R.id.textViewRegister);
     }
 }

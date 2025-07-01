@@ -13,4 +13,7 @@
     <string name="hint_register_lastName">Last name</string>
     <string name="hint_register_age">How old are you?</string>
     <string name="button_register">SIGN UP</string>
+    <string name="reset_title">Forgot password?</string>
+    <string name="reset_hint">Your email:</string>
+    <string name="reset_button">RESET PASSWORD</string>
 </resources>

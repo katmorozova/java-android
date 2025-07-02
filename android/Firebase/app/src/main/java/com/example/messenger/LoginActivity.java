@@ -1,5 +1,6 @@
 package com.example.messenger;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -63,6 +64,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 //launch intent to register screen
+                Intent intent = RegisterActivity.newIntent(LoginActivity.this);
+                startActivity(intent);
             }
         });
 

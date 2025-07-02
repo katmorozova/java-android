@@ -1,6 +1,9 @@
 package com.example.messenger;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -30,6 +33,18 @@ public class RegisterActivity extends AppCompatActivity {
             return insets;
         });
         initViews();
+        buttonRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String email = getTrimmedValue(editTextEmail);
+                String password = getTrimmedValue(editTextPassword);
+                String name = getTrimmedValue(editTextName);
+                String lastName = getTrimmedValue(editTextLastName);
+                String age = getTrimmedValue(editTextAge);
+
+                //sign up
+            }
+        });
     }
 
     private void initViews(){
@@ -39,5 +54,13 @@ public class RegisterActivity extends AppCompatActivity {
         editTextLastName = findViewById(R.id.editTextLastName);
         editTextAge = findViewById(R.id.editTextAge);
         buttonRegister = findViewById(R.id.buttonRegister);
+    }
+
+    private String getTrimmedValue(EditText editText){
+        return editText.getText().toString().trim();
+    }
+
+    public static Intent newIntent(Context context){
+        return new Intent(context, RegisterActivity.class);
     }
 }

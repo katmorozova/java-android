@@ -1,6 +1,9 @@
 package com.example.messenger;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -26,10 +29,26 @@ public class ResetPasswordActivity extends AppCompatActivity {
             return insets;
         });
         initViews();
+        String email = getIntent().getStringExtra("email");
+        editTextEmail.setText(email);
+
+        buttonReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String email = editTextEmail.getText().toString().trim();
+            //reset email
+            }
+        });
     }
 
     private void initViews(){
         editTextEmail = findViewById(R.id.editTextEmail);
         buttonReset = findViewById(R.id.buttonReset);
     }
+
+   public static Intent newIntent(Context context, String email){
+        Intent intent = new Intent(context, ResetPasswordActivity.class);
+        intent.putExtra("email", email);
+        return intent;
+   }
 }

@@ -2,6 +2,7 @@ package com.example.messenger;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -42,87 +43,29 @@ public class LoginActivity extends AppCompatActivity {
             return insets;
         });
         initViews();
+        buttonLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String email = editTextEmail.getText().toString().trim();
+                String password = editTextPassword.getText().toString().trim();
+//añadir login
 
 
-        auth = FirebaseAuth.getInstance();
-        //obtenemos usuario
-        FirebaseUser user = auth.getCurrentUser();
-        if (user == null){
-            Log.d("LoginActivity", "Not autorized");
-        }else{
-            Log.d("LoginActivity", "Autorized");
-        }
-        //registramos nuevo usuario
-        auth.createUserWithEmailAndPassword("email@email.com", "123456").addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-            @Override
-            public void onSuccess(AuthResult authResult) {
-                //obtenemos usuario
-                FirebaseUser user = auth.getCurrentUser();
-                if (user == null){
-                    Log.d("LoginActivity", "Not autorized");
-                }else{
-                    Log.d("LoginActivity", "Autorized");
-                }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.d("LoginActivity", e.getMessage());
-                Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-        //Salir de la app
-        auth.signOut();
-
-        //Evento para autorizacion
-        auth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
+        textViewResetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                //si usuario autorizado ->mostrr pantalla con todos los usuarios
-                FirebaseUser user = auth.getCurrentUser();
-                if (user == null){
-                    Log.d("LoginActivity", "Not autorized");
-                }else{
-                    Log.d("LoginActivity", "Autorized");
-                }
+            public void onClick(View view) {
+//launch intent to forgot password screen
+            }
+        });
+        textViewRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//launch intent to register screen
             }
         });
 
-
-        //entrar en la app
-        auth.signInWithEmailAndPassword("email@email.com", "123456").addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-            @Override
-            public void onSuccess(AuthResult authResult) {
-               /*
-                //obtenemos usuario
-                FirebaseUser user = auth.getCurrentUser();
-                if (user == null){
-                    Log.d("LoginActivity", "Not autorized");
-                }else{
-                    Log.d("LoginActivity", "Autorized");
-                }
-                */
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.d("LoginActivity", e.getMessage());
-                Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        //Reestablecida contraseña
-        auth.sendPasswordResetEmail("email@email.com").addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                Log.d("LoginActivity", "Success");
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.d("LoginActivity", e.getMessage());
-            }
-        });
     }
 
     private void initViews(){

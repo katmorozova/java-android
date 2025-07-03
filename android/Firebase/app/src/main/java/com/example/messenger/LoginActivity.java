@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -31,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView textViewResetPassword;
     private TextView textViewRegister;
 
-    private FirebaseAuth auth;
+    private LoginViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,14 +46,22 @@ public class LoginActivity extends AppCompatActivity {
             return insets;
         });
         initViews();
+        viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+        observeViewModel();
+        setUpClickListeners();
+
+    }
+
+
+
+    private void setUpClickListeners(){
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String email = editTextEmail.getText().toString().trim();
                 String password = editTextPassword.getText().toString().trim();
-//añadir login
-
-
+                //añadir login
+                viewModel.login(email, password);
             }
         });
         textViewResetPassword.setOnClickListener(new View.OnClickListener() {
@@ -61,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = ResetPasswordActivity.newIntent(
                         LoginActivity.this,
                         editTextEmail.getText().toString().trim()
-                        );
+                );
                 startActivity(intent);
             }
         });
@@ -73,6 +83,30 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void observeViewModel(){
+        viewModel.getError().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String errorMessage) {
+                if(errorMessage != null) {
+                    Toast.makeText(LoginActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        viewModel.getUser().observe(this, new Observer<FirebaseUser>() {
+            @Override
+            public void onChanged(FirebaseUser firebaseUser) {
+                if(firebaseUser != null){
+                    Toast.makeText(
+                            LoginActivity.this,
+                            "Authorized",
+                            Toast.LENGTH_SHORT
+                    ).show();
+                }
+            }
+        });
+
 
     }
 

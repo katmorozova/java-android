@@ -16,4 +16,5 @@
     <string name="reset_title">Forgot password?</string>
     <string name="reset_hint">Your email:</string>
     <string name="reset_button">RESET PASSWORD</string>
+    <string name="logout">LOGOUT</string>
 </resources>

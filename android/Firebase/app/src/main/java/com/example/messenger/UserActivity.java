@@ -24,5 +24,9 @@ public class UserActivity extends AppCompatActivity {
         });
     }
 
+    public static Intent newIntent(Context context){
+        return new Intent(context, UserActivity.class);
+    }
+
 
 }

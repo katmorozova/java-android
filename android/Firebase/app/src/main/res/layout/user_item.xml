@@ -23,6 +23,7 @@
             tools:text="John Smith, 27"/>
         
         <View
+            android:id="@+id/onlineStatus"
             android:layout_width="12dp"
             android:layout_height="12dp"
             android:layout_margin="16dp"

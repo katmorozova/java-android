@@ -12,11 +12,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 public class ResetPasswordActivity extends AppCompatActivity {
 
     private EditText editTextEmail;
     private Button buttonReset;
+
+    private ResetPasswordViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +32,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
             return insets;
         });
         initViews();
+        viewModel = new ViewModelProvider(this).get(ResetPasswordViewModel.class);
         String email = getIntent().getStringExtra("email");
         editTextEmail.setText(email);
 

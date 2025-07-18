@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -21,6 +22,8 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText editTextLastName;
     private EditText editTextAge;
     private Button buttonRegister;
+
+    private RegisterViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,7 @@ public class RegisterActivity extends AppCompatActivity {
             return insets;
         });
         initViews();
+        viewModel = new ViewModelProvider(this).get(RegisterViewModel.class);
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -40,9 +44,10 @@ public class RegisterActivity extends AppCompatActivity {
                 String password = getTrimmedValue(editTextPassword);
                 String name = getTrimmedValue(editTextName);
                 String lastName = getTrimmedValue(editTextLastName);
-                String age = getTrimmedValue(editTextAge);
+                int age = Integer.parseInt(getTrimmedValue(editTextAge));
 
                 //sign up
+                viewModel.signUp(email, password, name, lastName, age);
             }
         });
     }

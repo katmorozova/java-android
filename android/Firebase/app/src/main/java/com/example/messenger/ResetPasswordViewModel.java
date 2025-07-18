@@ -19,7 +19,7 @@ public class ResetPasswordViewModel extends ViewModel {
         return error;
     }
 
-    public LiveData<Boolean> getSuccess() {
+    public LiveData<Boolean> isSuccess() {
         return success;
     }
 

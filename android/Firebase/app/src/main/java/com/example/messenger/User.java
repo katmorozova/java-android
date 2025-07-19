@@ -8,6 +8,8 @@ public class User {
     private int age;
     private boolean isOnline;
 
+    public User(){}
+
     public User(String id, String name, String lastName, int age, boolean isOnline) {
         this.id = id;
         this.name = name;

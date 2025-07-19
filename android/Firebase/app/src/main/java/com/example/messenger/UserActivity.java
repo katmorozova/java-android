@@ -15,11 +15,18 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class UserActivity extends AppCompatActivity {
 
+    private RecyclerView recyclerViewUsers;
+    private UserAdapter userAdapter;
     private UserViewModel viewModel;
 
     @Override
@@ -32,6 +39,7 @@ public class UserActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        initViews();
         viewModel = new ViewModelProvider(this).get(UserViewModel.class);
         observeViewModel();
 
@@ -70,6 +78,12 @@ public class UserActivity extends AppCompatActivity {
 
     public static Intent newIntent(Context context){
         return new Intent(context, UserActivity.class);
+    }
+
+    private void initViews(){
+        recyclerViewUsers = findViewById(R.id.recyclerViewUsers);
+        userAdapter = new UserAdapter();
+        recyclerViewUsers.setAdapter(userAdapter);
     }
 
 

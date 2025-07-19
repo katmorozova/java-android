@@ -16,10 +16,15 @@ import java.util.List;
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
 
     private List<User> users = new ArrayList<>();
+    private OnUserClickListener onUserClickListener;
 
     public void setUsers(List<User> users) {
         this.users = users;
         notifyDataSetChanged();
+    }
+
+    public void setOnUserClickListener(OnUserClickListener onUserClickListener) {
+        this.onUserClickListener = onUserClickListener;
     }
 
     @NonNull
@@ -44,12 +49,26 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         }
         Drawable background = ContextCompat.getDrawable(holder.itemView.getContext(), bgResId);
         holder.onlineStatus.setBackground(background);
+        //insertamos evento de clik para itemView
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(onUserClickListener != null){
+                    onUserClickListener.onUserClick(user);
+                }
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return users.size();
     }
+//Añadimos interface de evento del click
+    interface OnUserClickListener{
+        void onUserClick(User user);
+    }
+
 
     static class UserViewHolder extends RecyclerView.ViewHolder {
 

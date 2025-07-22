@@ -65,6 +65,14 @@ public class UserActivity extends AppCompatActivity {
                 }
             }
         });
+        //obtenemos todos los usuarios
+        viewModel.getUsers().observe(this, new Observer<List<User>>() {
+            @Override
+            public void onChanged(List<User> users) {
+                //insertamos usuarios obtenidos en userAdapter
+                userAdapter.setUsers(users);
+            }
+        });
 
     }
 

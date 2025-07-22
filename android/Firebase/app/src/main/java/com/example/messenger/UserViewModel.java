@@ -41,10 +41,20 @@ public class UserViewModel extends ViewModel {
         usersReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                FirebaseUser currentUser = auth.getCurrentUser();
+                if (currentUser == null){
+                    return;
+                }
+
                 List<User> usersFromDb = new ArrayList<>();
                 for(DataSnapshot dataSnapshot: snapshot.getChildren()){
                     User user = dataSnapshot.getValue(User.class);
-                    usersFromDb.add(user);
+                    if(user == null){
+                        return;
+                    }
+                    if (!user.getId().equals(currentUser.getUid())){
+                        usersFromDb.add(user);
+                    }
                 }
                 users.setValue(usersFromDb);
             }

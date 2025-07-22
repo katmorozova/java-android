@@ -75,7 +75,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onChanged(FirebaseUser firebaseUser) {
                 if(firebaseUser != null){
                     //si usuario esta autorizado mostramos la pantalla UserActivity
-                    Intent intent = UserActivity.newIntent(RegisterActivity.this);
+                    Intent intent = UserActivity.newIntent(RegisterActivity.this, firebaseUser.getUid());
                     startActivity(intent);
                     finish();
                 }

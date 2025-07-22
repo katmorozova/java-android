@@ -18,4 +18,5 @@
     <string name="reset_button">RESET PASSWORD</string>
     <string name="logout">LOGOUT</string>
     <string name="reset_link">The reset link has been succefully sent</string>
+    <string name="typy_message">Type your message</string>
 </resources>

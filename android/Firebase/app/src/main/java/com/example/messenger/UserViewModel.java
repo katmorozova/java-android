@@ -20,10 +20,11 @@ public class UserViewModel extends ViewModel {
 
     private FirebaseAuth auth;
     private FirebaseDatabase database;
-    private DatabaseReference userReference;
+    private DatabaseReference usersReference;
 
     //livedata para mostrar si el usuario esta autorizado o no
     private MutableLiveData<FirebaseUser> user = new MutableLiveData<>();
+    private MutableLiveData<List<User>> users = new MutableLiveData<>();
 
     public UserViewModel(){
         auth = FirebaseAuth.getInstance();
@@ -36,15 +37,16 @@ public class UserViewModel extends ViewModel {
             }
         });
         database = FirebaseDatabase.getInstance();
-        userReference = database.getReference("Users");
-        userReference.addValueEventListener(new ValueEventListener() {
+        usersReference = database.getReference("Users");
+        usersReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                List<User> usersFromDb = new ArrayList<>();
                 for(DataSnapshot dataSnapshot: snapshot.getChildren()){
-                    List<User> usersFromDb = new ArrayList<>();
                     User user = dataSnapshot.getValue(User.class);
                     usersFromDb.add(user);
                 }
+                users.setValue(usersFromDb);
             }
 
             @Override
@@ -54,6 +56,9 @@ public class UserViewModel extends ViewModel {
         });
     }
 
+    public LiveData<List<User>> getUsers() {
+        return users;
+    }
 
     public LiveData<FirebaseUser> getUser() {
         return user;

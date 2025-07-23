@@ -2,6 +2,7 @@ package com.example.messenger;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -105,6 +107,14 @@ public class ChatActivity extends AppCompatActivity {
                 //insertat texto en textViewTitle
                 String userInfo = String.format("%s %s", user.getName(), user.getLastName());
                 textViewTitle.setText(userInfo);
+                int bgResId;
+                if(user.online()){
+                    bgResId = R.drawable.circle_green;
+                }else{
+                    bgResId = R.drawable.circle_red;
+                }
+                Drawable background = ContextCompat.getDrawable(ChatActivity.this, bgResId);
+                onlineStatus.setBackground(background);
             }
         });
     }

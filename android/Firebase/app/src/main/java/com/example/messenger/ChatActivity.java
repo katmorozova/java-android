@@ -34,6 +34,7 @@ public class ChatActivity extends AppCompatActivity {
     private String otherUserId;
 
     private ChatViewModel viewModel;
+    private ChatViewModelFactory viewModelFactory;
 
 
     @Override
@@ -47,9 +48,11 @@ public class ChatActivity extends AppCompatActivity {
             return insets;
         });
         initViews();
-        viewModel = new ViewModelProvider(this).get(ChatViewModel.class);
         currentUserId = getIntent().getStringExtra(EXTRA_CURRENT_USER_ID);
         otherUserId = getIntent().getStringExtra(EXTRA_OTHER_USER_ID);
+        viewModelFactory = new ChatViewModelFactory(currentUserId, otherUserId);
+        viewModel = new ViewModelProvider(this, viewModelFactory).get(ChatViewModel.class);
+
         messagesAdapter = new MessagesAdapter(currentUserId);
         recyclerViewMessage.setAdapter(messagesAdapter);
         List<Message> messages = new ArrayList<>();

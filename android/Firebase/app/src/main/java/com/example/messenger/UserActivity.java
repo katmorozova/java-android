@@ -97,6 +97,7 @@ public class UserActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.item_logout){
             viewModel.logout();
+
         }
         return super.onOptionsItemSelected(item);
     }

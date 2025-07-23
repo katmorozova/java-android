@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -32,6 +33,8 @@ public class ChatActivity extends AppCompatActivity {
     private String currentUserId;
     private String otherUserId;
 
+    private ChatViewModel viewModel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,7 @@ public class ChatActivity extends AppCompatActivity {
             return insets;
         });
         initViews();
+        viewModel = new ViewModelProvider(this).get(ChatViewModel.class);
         currentUserId = getIntent().getStringExtra(EXTRA_CURRENT_USER_ID);
         otherUserId = getIntent().getStringExtra(EXTRA_OTHER_USER_ID);
         messagesAdapter = new MessagesAdapter(currentUserId);

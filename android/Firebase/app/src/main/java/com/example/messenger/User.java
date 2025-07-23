@@ -6,16 +6,16 @@ public class User {
     private  String name;
     private  String lastName;
     private int age;
-    private boolean isOnline;
+    private boolean online;
 
     public User(){}
 
-    public User(String id, String name, String lastName, int age, boolean isOnline) {
+    public User(String id, String name, String lastName, int age, boolean online) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.age = age;
-        this.isOnline = isOnline;
+        this.online = online;
     }
 
     public String getId() {
@@ -34,7 +34,7 @@ public class User {
         return age;
     }
 
-    public boolean isOnline() {
-        return isOnline;
+    public boolean online() {
+        return online;
     }
 }

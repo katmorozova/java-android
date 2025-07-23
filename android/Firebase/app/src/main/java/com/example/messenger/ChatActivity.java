@@ -109,6 +109,18 @@ public class ChatActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        viewModel.setUserOnline(true);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        viewModel.setUserOnline(false);
+    }
+
     private void initViews(){
         textViewTitle = findViewById(R.id.textViewTitle);
         onlineStatus = findViewById(R.id.onlineStatus);

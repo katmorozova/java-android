@@ -61,7 +61,18 @@ public class ChatActivity extends AppCompatActivity {
         recyclerViewMessage.setAdapter(messagesAdapter);
 
         observeViewModel();
-
+//Añadimos evento de click para imageViewSendMessage
+        imageViewSendMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Message message = new Message(
+                        editTextMessage.getText().toString().trim(),
+                        currentUserId,
+                        otherUserId
+                );
+                viewModel.sendMessage(message);
+            }
+        });
 
     }
 

@@ -20,6 +20,12 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
 
     private TextView textViewTimer;
+    private TextView textViewScore;
+    private TextView textViewQuestion;
+    private TextView textViewAnswer1;
+    private TextView textViewAnswer2;
+    private TextView textViewAnswer3;
+    private TextView textViewAnswer4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +37,18 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-
-
+        initViews();
 
     }
 
+    private void initViews(){
+        textViewTimer = findViewById(R.id.textViewTimer);
+        textViewScore = findViewById(R.id.textViewScore);
+        textViewQuestion = findViewById(R.id.textViewQuestion);
+        textViewAnswer1 = findViewById(R.id.textViewAnswer1);
+        textViewAnswer2 = findViewById(R.id.textViewAnswer2);
+        textViewAnswer3 = findViewById(R.id.textViewAnswer3);
+        textViewAnswer4 = findViewById(R.id.textViewAnswer4);
 
+    }
 }

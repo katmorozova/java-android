@@ -55,6 +55,11 @@ public class MainActivity extends AppCompatActivity {
         options.add(textViewAnswer2);
         options.add(textViewAnswer3);
         options.add(textViewAnswer4);
+        playNext();
+
+    }
+
+    private void playNext(){
         generateQuestion();
         for(int i = 0; i<options.size(); i++){
             if (i == rightAnswerPosition){
@@ -63,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
                 options.get(i).setText(Integer.toString(generateWrongAnswer()));
             }
         }
-
     }
 
     private void initViews(){
@@ -102,5 +106,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickAnswer(View view) {
+        playNext();
     }
 }

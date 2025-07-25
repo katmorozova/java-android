@@ -56,6 +56,7 @@
         android:textStyle="bold"
         android:textColor="@color/white"
         android:gravity="center"
+        android:onClick="onClickAnswer"
         app:layout_constraintBottom_toTopOf="@+id/textViewAnswer3"
         app:layout_constraintEnd_toStartOf="@+id/textViewAnswer2"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,6 +72,7 @@
         android:textStyle="bold"
         android:textColor="@color/white"
         android:gravity="center"
+        android:onClick="onClickAnswer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textViewAnswer4"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,9 +88,9 @@
         android:textStyle="bold"
         android:textColor="@color/white"
         android:gravity="center"
+        android:onClick="onClickAnswer"
         app:layout_constraintBottom_toTopOf="@+id/textViewAnswer4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toEndtOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textViewAnswer1"
         tools:text="-13" />
 
@@ -102,9 +104,9 @@
         android:textStyle="bold"
         android:textColor="@color/white"
         android:gravity="center"
+        android:onClick="onClickAnswer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/textViewAnswer3"
         tools:text="-10" />
 

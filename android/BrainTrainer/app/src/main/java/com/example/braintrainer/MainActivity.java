@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.os.CountDownTimer;
 import android.os.PersistableBundle;
 import android.preference.PreferenceManager;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -98,5 +99,8 @@ public class MainActivity extends AppCompatActivity {
             result = (int) (Math.random() * max * 2 + 1) - (max - min);
         } while(result == rightAnswer);
         return result;
+    }
+
+    public void onClickAnswer(View view) {
     }
 }

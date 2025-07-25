@@ -17,6 +17,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView textViewTimer;
@@ -26,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView textViewAnswer2;
     private TextView textViewAnswer3;
     private TextView textViewAnswer4;
+
+    private ArrayList<TextView> options = new ArrayList<>();
 
     private String question;
     private int rightAnswer;
@@ -46,6 +50,18 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         initViews();
+        options.add(textViewAnswer1);
+        options.add(textViewAnswer2);
+        options.add(textViewAnswer3);
+        options.add(textViewAnswer4);
+        generateQuestion();
+        for(int i = 0; i<options.size(); i++){
+            if (i == rightAnswerPosition){
+                options.get(i).setText(Integer.toString(rightAnswer));
+            } else {
+                options.get(i).setText(Integer.toString(generateWrongAnswer()));
+            }
+        }
 
     }
 
@@ -72,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
             rightAnswer = a - b;
             question = String.format("%s - %s", a, b);
         }
+        textViewQuestion.setText(question);
         rightAnswerPosition = (int) (Math.random() * 4);
     }
 

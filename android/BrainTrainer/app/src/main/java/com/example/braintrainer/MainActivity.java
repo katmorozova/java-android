@@ -27,6 +27,14 @@ public class MainActivity extends AppCompatActivity {
     private TextView textViewAnswer3;
     private TextView textViewAnswer4;
 
+    private String question;
+    private int rightAnswer;
+    private int rightAnswerPosition;
+    private boolean isPositive;
+    private int min = 5;
+    private int max = 30;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,5 +58,28 @@ public class MainActivity extends AppCompatActivity {
         textViewAnswer3 = findViewById(R.id.textViewAnswer3);
         textViewAnswer4 = findViewById(R.id.textViewAnswer4);
 
+    }
+
+    private void generateQuestion(){
+        int a = (int) (Math.random() * (max - min +1) + min);
+        int b = (int) (Math.random() * (max - min +1) + min);
+        int mark = (int) (Math.random() * 2);
+        isPositive = mark == 1;
+        if(isPositive){
+            rightAnswer = a + b;
+            question = String.format("%s + %s", a, b);
+        } else {
+            rightAnswer = a - b;
+            question = String.format("%s - %s", a, b);
+        }
+        rightAnswerPosition = (int) (Math.random() * 4);
+    }
+
+    private int generateWrongAnswer(){
+        int result;
+        do {
+            result = (int) (Math.random() * max * 2 + 1) - (max - min);
+        } while(result == rightAnswer);
+        return result;
     }
 }

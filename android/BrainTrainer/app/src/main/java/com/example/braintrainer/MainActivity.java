@@ -19,6 +19,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -59,6 +60,18 @@ public class MainActivity extends AppCompatActivity {
         options.add(textViewAnswer3);
         options.add(textViewAnswer4);
         playNext();
+        CountDownTimer timer = new CountDownTimer(6000, 1000) {
+            @Override
+            public void onFinish() {
+
+            }
+
+            @Override
+            public void onTick(long l) {
+
+            }
+        };
+        timer.start();
 
     }
 
@@ -108,6 +121,13 @@ public class MainActivity extends AppCompatActivity {
             result = (int) (Math.random() * max * 2 + 1) - (max - min);
         } while(result == rightAnswer);
         return result;
+    }
+
+    private String getTime(long millis){
+        int seconds = (int) (millis / 1000);
+        int minutes = seconds / 60;
+        seconds = seconds % 60;
+        return String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
     }
 
     public void onClickAnswer(View view) {

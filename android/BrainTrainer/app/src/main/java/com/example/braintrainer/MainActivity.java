@@ -39,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
     private int min = 5;
     private int max = 30;
 
+    private int countOfQuestions = 0;
+    private int countOfRightAnswers = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
                 options.get(i).setText(Integer.toString(generateWrongAnswer()));
             }
         }
+        String score = String.format("%s / %s", countOfRightAnswers, countOfQuestions);
+        textViewScore.setText(score);
     }
 
     private void initViews(){
@@ -110,10 +115,12 @@ public class MainActivity extends AppCompatActivity {
         String answer = textView.getText().toString();
         int chosenAnswer = Integer.parseInt(answer);
         if (chosenAnswer == rightAnswer){
+            countOfRightAnswers++;
             Toast.makeText(this, "Correcto", Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(this, "Incorrecto", Toast.LENGTH_SHORT).show();
         }
+        countOfQuestions++;
         playNext();
     }
 }

@@ -82,6 +82,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTick(long millisUntilFinished) {
                 textViewTimer.setText(getTime(millisUntilFinished));
+                if (millisUntilFinished < 10000){
+                    textViewTimer.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
+                }
             }
         };
         timer.start();

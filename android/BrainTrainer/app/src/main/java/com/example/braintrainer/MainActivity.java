@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         options.add(textViewAnswer3);
         options.add(textViewAnswer4);
         playNext();
+
         CountDownTimer timer = new CountDownTimer(6000, 1000) {
             @Override
             public void onFinish() {
@@ -67,8 +68,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onTick(long l) {
-
+            public void onTick(long millisUntilFinished) {
+                textViewTimer.setText(getTime(millisUntilFinished));
             }
         };
         timer.start();

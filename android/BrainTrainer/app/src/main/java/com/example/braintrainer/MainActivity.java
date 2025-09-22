@@ -66,6 +66,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 gameOver = true;
+                //obtenemos SharedPreferences cuando se finaliza el tiempo
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+               //comprobamos si aun no hemos guardado max en sharedPreferences
+                int max = preferences.getInt("max", 0);
+                if(countOfRightAnswers >= max){
+                    preferences.edit().putInt("max", countOfRightAnswers).apply();
+                }
+
                 Intent intent = new Intent(MainActivity.this, ScoreActivity.class);
                 intent.putExtra("result", countOfRightAnswers);
                 startActivity(intent);

@@ -1,6 +1,7 @@
 package com.example.braintrainer;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -64,7 +65,10 @@ public class MainActivity extends AppCompatActivity {
         CountDownTimer timer = new CountDownTimer(6000, 1000) {
             @Override
             public void onFinish() {
-
+                gameOver = true;
+                Intent intent = new Intent(MainActivity.this, ScoreActivity.class);
+                intent.putExtra("result", countOfRightAnswers);
+                startActivity(intent);
             }
 
             @Override

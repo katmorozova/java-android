@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     private int countOfQuestions = 0;
     private int countOfRightAnswers = 0;
-
+    private boolean gameOver = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,16 +132,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickAnswer(View view) {
-        TextView textView = (TextView) view;
-        String answer = textView.getText().toString();
-        int chosenAnswer = Integer.parseInt(answer);
-        if (chosenAnswer == rightAnswer){
-            countOfRightAnswers++;
-            Toast.makeText(this, "Correcto", Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(this, "Incorrecto", Toast.LENGTH_SHORT).show();
+        //Reacionar a los clicks solo cuando el juego no esta acabado
+        if (!gameOver) {
+            TextView textView = (TextView) view;
+            String answer = textView.getText().toString();
+            int chosenAnswer = Integer.parseInt(answer);
+            if (chosenAnswer == rightAnswer) {
+                countOfRightAnswers++;
+                Toast.makeText(this, "Correcto", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Incorrecto", Toast.LENGTH_SHORT).show();
+            }
+            countOfQuestions++;
+            playNext();
         }
-        countOfQuestions++;
-        playNext();
     }
 }
